@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { globalCss } from '@stitches/react';
-import Main from '@/router/Main';
+import { Awards, Main } from '@/router/index';
+
+import '@/assets/fonts/index.css';
 
 globalCss({
   ':root': {
     fontSize: '10px',
   },
   '*': {
+    fontFamily: 'SFpro',
     fontSize: '1.6rem',
     boxSizing: 'border-box',
     color: '#fff',
@@ -29,13 +32,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      {/* <Route path="/" element={<Main />} />
-      <Route path="/" element={<Main />} />
-      <Route path="/" element={<Main />} />
-      <Route path="/" element={<Main />} />
-      <Route path="/" element={<Main />} />
-      <Route path="/" element={<Main />} />
-      <Route path="/" element={<Main />} /> */}
+      <Route path="/awards" element={<Awards />} />
     </Routes>
   );
 };

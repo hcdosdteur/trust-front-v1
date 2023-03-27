@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'SFpro';
+  font-weight: 300;
+  src: url('./SFproL.otf') format('otf');
+}
+@font-face {
+  font-family: 'SFpro';
+  font-weight: 400;
+  src: url('./SFproR.otf') format('otf');
+}
+@font-face {
+  font-family: 'SFpro';
+  font-weight: 500;
+  src: url('./SFproM.otf') format('otf');
+}
+@font-face {
+  font-family: 'SFpro';
+  font-weight: 600;
+  src: url('./SFproSB.otf') format('otf');
+}
+@font-face {
+  font-family: 'SFpro';
+  font-weight: 700;
+  src: url('./SFproB.otf') format('otf');
+}
+@font-face {
+  font-family: 'SFpro';
+  font-weight: 800;
+  src: url('./SFproH.otf') format('otf');
+}

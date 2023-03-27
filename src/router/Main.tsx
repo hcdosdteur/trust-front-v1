@@ -1,15 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { styled } from '@stitches/react';
+import { Loading } from '@/component/Loading/Loading';
+import { MainMenu } from '@/component/Menu/MainMenu';
 
-function Main() {
+export const Main = () => {
+  // const [loading, setLoading] = useState<boolean>(true);
+
   const fetchTest = async () => {
-    const result = await fetch(`/api/test`);
-    let data = await result.text();
-    console.log(data);
+    // setLoading(true);
+    try {
+      const result = await fetch(`/api/test`);
+      let data = await result.text();
+      console.log(data);
+      // setLoading(false);
+    } catch (error) {
+      window.alert('ERROR');
+    }
   };
 
-  fetchTest();
+  useEffect(() => {
+    fetchTest();
+  }, []);
 
-  return <div>hello world!</div>;
-}
+  return (
+    <Wrapper>
+      {/* {loading ? <Loading /> : null} */}
+      <Trust>TRUST</Trust>
+      <MainMenu />
+    </Wrapper>
+  );
+};
 
-export default Main;
+const Wrapper = styled('div', {
+  display: 'flex',
+  width: '100vw',
+  height: '100vh',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+const Trust = styled('div', {
+  fontSize: '9rem',
+  fontWeight: 700,
+});
