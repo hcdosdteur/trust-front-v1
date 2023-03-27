@@ -4,15 +4,16 @@ import { Loading } from '@/component/Loading/Loading';
 import { MainMenu } from '@/component/Menu/MainMenu';
 
 export const Main = () => {
-  // const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [isTop, setisTop] = useState<boolean>(true);
 
   const fetchTest = async () => {
-    // setLoading(true);
+    setLoading(true);
     try {
       const result = await fetch(`/api/test`);
       let data = await result.text();
       console.log(data);
-      // setLoading(false);
+      setLoading(false);
     } catch (error) {
       window.alert('ERROR');
     }
@@ -24,7 +25,7 @@ export const Main = () => {
 
   return (
     <Wrapper>
-      {/* {loading ? <Loading /> : null} */}
+      {loading ? <Loading /> : null}
       <Trust>TRUST</Trust>
       <MainMenu />
     </Wrapper>
