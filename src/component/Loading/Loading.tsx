@@ -41,25 +41,25 @@ const Span = styled('span', {
   variants: {
     order: {
       1: {
-        animationDelay: '.2s',
+        animationDelay: 0,
       },
       2: {
-        animationDelay: 'calc(.15s * 2)',
+        animationDelay: 'calc(.15s * 1)',
       },
       3: {
-        animationDelay: 'calc(.15s * 3)',
+        animationDelay: 'calc(.15s * 2)',
       },
       4: {
-        animationDelay: 'calc(.15s * 4)',
+        animationDelay: 'calc(.15s * 3)',
       },
       5: {
-        animationDelay: 'calc(.15s * 5)',
+        animationDelay: 'calc(.15s * 4)',
       },
       6: {
-        animationDelay: 'calc(.15s * 6)',
+        animationDelay: 'calc(.15s * 5)',
       },
       7: {
-        animationDelay: 'calc(.15s * 7)',
+        animationDelay: 'calc(.15s * 6)',
       },
     },
   },

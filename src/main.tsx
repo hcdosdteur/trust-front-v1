@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { globalCss } from '@stitches/react';
 import { Awards, Main } from '@/router/index';
+import { Loading } from './component/Loading/Loading';
 
 import '@/assets/fonts/index.css';
 
@@ -17,6 +18,14 @@ globalCss({
     color: '#fff',
     fontWeight: 700,
     letterSpacing: '-0.01em',
+  },
+  '*::-webkit-scrollbar': {
+    width: '.6rem',
+  },
+  '*::-webkit-scrollbar-thumb': {
+    width: '4rem',
+    background: '#adadad7b',
+    borderRadius: '1rem',
   },
   body: {
     backgroundColor: '#000',
@@ -33,6 +42,7 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<Main />} />
       <Route path="/awards" element={<Awards />} />
+      <Route path="/loading" element={<Loading />} />
     </Routes>
   );
 };

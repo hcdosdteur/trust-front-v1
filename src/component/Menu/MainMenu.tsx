@@ -1,11 +1,17 @@
-import { styled } from '@stitches/react';
+import { keyframes, styled } from '@stitches/react';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as Home } from '@/assets/icon/home.svg';
 
-export const MainMenu = () => {
+export const MainMenu: React.FC<{ top: boolean }> = ({ top }) => {
   return (
-    <Menu>
+    <Menu display={top}>
+      <Link to="/">
+        <Home />
+      </Link>
+      <Link to="/loading ">
+        <Home />
+      </Link>
       <Link to="/">
         <Home />
       </Link>
@@ -15,22 +21,25 @@ export const MainMenu = () => {
       <Link to="/">
         <Home />
       </Link>
-      <Link to="/">
-        <Home />
-      </Link>
-      <Link to="/">
-        <Home />
-      </Link>
     </Menu>
   );
 };
 
+const fadein = keyframes({
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+});
+
+const fadeout = keyframes({
+  from: { opacity: 1 },
+  to: { opacity: 0 },
+});
+
 const Menu = styled('div', {
   display: 'flex',
-  position: 'absolute',
-  bottom: '1rem',
-  minWidth: '35rem',
-  height: '5.5rem',
+  position: 'inherit',
+  width: '100%',
+  height: '100%',
   padding: '.5rem',
   justifyContent: 'space-evenly',
   svg: {
@@ -40,6 +49,18 @@ const Menu = styled('div', {
     '&:hover': {
       fill: '#e2e2e2',
       scale: 1.1,
+    },
+  },
+  variants: {
+    display: {
+      true: {
+        animation: `${fadein} .25s`,
+        visibility: 'visible',
+      },
+      false: {
+        animation: `${fadeout} .25s`,
+        visibility: 'hidden',
+      },
     },
   },
 });
