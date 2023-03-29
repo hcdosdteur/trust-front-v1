@@ -1,4 +1,4 @@
-import { Awards, MainPage } from '@/pages/router';
+import { Assignment, Awards, MainPage, Member } from '@/pages/router';
 import React from 'react';
 import { Loading } from '@/component/Loading/Loading';
 
@@ -10,4 +10,6 @@ export const NavigatedComponent: ComponentItem = {
   '/': [{ Component: MainPage }],
   '/loading': [{ Component: Loading }],
   '/awards': [{ Component: Awards }],
+  '/member': [{ Component: Member }],
+  '/assignment': [{ Component: Assignment }],
 };

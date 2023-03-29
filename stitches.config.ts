@@ -1,7 +1,7 @@
 import { createStitches } from '@stitches/react';
 
 export const COLORS = {
-  main: '#DBCEC0',
+  main: '#C2D7E4',
 };
 
 export const {

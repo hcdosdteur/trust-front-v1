@@ -42,6 +42,8 @@ const Router = () => {
       <Route path="/" element={<Main />} />
       <Route path="/awards" element={<Main />} />
       <Route path="/loading" element={<Main />} />
+      <Route path="/member" element={<Main />} />
+      <Route path="/assignment" element={<Main />} />
     </Routes>
   );
 };

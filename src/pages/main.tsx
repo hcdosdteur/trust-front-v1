@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled } from '#/stitches.config';
 import { NavigatedComponent } from '@/component/Navigation/Navigation';
+import { SubMenu } from '@/component/Navigation';
 
 const Main = () => {
   const [path, setPath] = useState<string>('/');
@@ -14,6 +15,7 @@ const Main = () => {
 
   return (
     <Wrapper>
+      {pathname !== '/' && <SubMenu />}
       {NavigatedComponent[path] &&
         NavigatedComponent[path].map(({ Component }) => {
           return <Component key={`${path}`} />;
@@ -28,7 +30,5 @@ const Wrapper = styled('div', {
   position: 'relative',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
   overflowY: 'auto',
 });
