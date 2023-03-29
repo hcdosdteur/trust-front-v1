@@ -2,6 +2,7 @@ import { createStitches } from '@stitches/react';
 
 export const COLORS = {
   main: '#C2D7E4',
+  grade1: '#616C72',
 };
 
 export const {

@@ -35,16 +35,18 @@ export const SubMenu = () => {
 
 const Wrapper = styled('div', {
   display: 'flex',
-  position: 'sticky',
+  position: 'fixed',
   width: '100%',
   top: '4.5rem',
   justifyContent: 'center',
+  textAlign: 'center',
   gap: '9rem',
+  zIndex: '10',
 });
 
 const defaultStyle = {
   fontSize: '2rem',
-  fontWeight: 600,
+  fontWeight: 500,
   opacity: 0.5,
   cursor: 'pointer',
   '&:hover': {
