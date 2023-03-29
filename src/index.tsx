@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { globalCss } from '@stitches/react';
-import { Awards, Main } from '@/router/index';
-import { Loading } from './component/Loading/Loading';
+import { globalCss } from '#/stitches.config';
+import Main from '@/pages/main';
 
 import '@/assets/fonts/index.css';
 
@@ -15,9 +14,9 @@ globalCss({
     fontFamily: 'SFpro',
     fontSize: '1.6rem',
     boxSizing: 'border-box',
-    color: '#fff',
+    color: '$main',
     fontWeight: 700,
-    letterSpacing: '-0.01em',
+    letterSpacing: '-0.02em',
   },
   '*::-webkit-scrollbar': {
     width: '.6rem',
@@ -41,8 +40,8 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/awards" element={<Awards />} />
-      <Route path="/loading" element={<Loading />} />
+      <Route path="/awards" element={<Main />} />
+      <Route path="/loading" element={<Main />} />
     </Routes>
   );
 };

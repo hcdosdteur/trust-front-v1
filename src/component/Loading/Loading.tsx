@@ -1,4 +1,4 @@
-import { keyframes, styled } from '@stitches/react';
+import { styled, keyframes } from '#/stitches.config';
 
 export const Loading = () => {
   return (
@@ -21,20 +21,21 @@ const filp = keyframes({
 });
 
 const Waviy = styled('div', {
-  position: 'absolute',
+  // position: 'absolute',
   width: '100vw',
   height: '100vh',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  top: 0,
-  left: 0,
+  // top: 0,
+  // left: 0,
   zIndex: 999,
 });
 
 const Span = styled('span', {
   position: 'relative',
   display: 'inline-block',
+  color: '#fff',
   fontSize: '4rem',
   textTransform: 'uppercase',
   animation: `${filp} 2s infinite`,

@@ -1,9 +1,8 @@
+import { styled } from '#/stitches.config';
 import { useEffect, useState } from 'react';
-import { styled } from '@stitches/react';
-import { Loading } from '@/component/Loading/Loading';
-import { MainMenu } from '@/component/Menu/MainMenu';
+import { MainMenu } from '@/component/Navigation/MainMenu';
 
-export const Main = () => {
+const FirstPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isTop, setisTop] = useState<boolean>(true);
   const [enterMenu, setEnterMenu] = useState<boolean>(false);
@@ -20,13 +19,13 @@ export const Main = () => {
     }
   };
 
+  const onMouseEnter = () => setEnterMenu(true);
+  const onMouseLeave = () => setEnterMenu(false);
+
   const onScroll = () => {
     if (window.scrollY === 0) setisTop(true);
     else setisTop(false);
   };
-
-  const onMouseEnter = () => setEnterMenu(true);
-  const onMouseLeave = () => setEnterMenu(false);
 
   useEffect(() => {
     fetchTest();
@@ -37,30 +36,19 @@ export const Main = () => {
   }, []);
 
   return (
-    <Wrapper>
-      {loading ? <Loading /> : null}
-      <MainContainer>
-        <Trust>TRUST</Trust>
-        <MainMenuContainer
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-        >
-          <MainMenu top={isTop && (enterMenu ? true : false)} />
-        </MainMenuContainer>
-      </MainContainer>
-      <Container>asdf</Container>
-    </Wrapper>
+    <MainContainer>
+      <Trust>TRUST</Trust>
+      <MainMenuContainer
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
+        <MainMenu top={isTop && (enterMenu ? true : false)} />
+      </MainMenuContainer>
+    </MainContainer>
   );
 };
 
-const Wrapper = styled('div', {
-  position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  overflow: 'overlay',
-});
+export default FirstPage;
 
 const MainContainer = styled('div', {
   display: 'flex',
@@ -70,19 +58,15 @@ const MainContainer = styled('div', {
   justifyContent: 'center',
 });
 
-const Trust = styled('div', {
-  fontSize: '9rem',
-  fontWeight: 700,
-});
-
-const Container = styled('div', {
-  width: '100%',
-  height: '100rem',
-});
-
 const MainMenuContainer = styled('div', {
   position: 'absolute',
   bottom: '1rem',
   minWidth: '35rem',
   height: '5.5rem',
+});
+
+const Trust = styled('div', {
+  fontSize: '9rem',
+  fontWeight: 700,
+  color: '#fff',
 });

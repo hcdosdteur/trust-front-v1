@@ -1,6 +1,8 @@
 import { createStitches } from '@stitches/react';
 
-export const COLORS = {};
+export const COLORS = {
+  main: '#DBCEC0',
+};
 
 export const {
   styled,

@@ -1,4 +1,4 @@
-import { keyframes, styled } from '@stitches/react';
+import { styled, keyframes } from '#/stitches.config';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as Home } from '@/assets/icon/home.svg';
