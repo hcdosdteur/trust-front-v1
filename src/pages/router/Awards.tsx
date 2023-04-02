@@ -1,4 +1,5 @@
 import { keyframes, styled } from '#/stitches.config';
+import { useEffect, useState } from 'react';
 
 const Award: React.FC<{
   rank: string;

@@ -7,7 +7,7 @@ export const MainPage = () => {
   return (
     <Wrapper>
       <FirstPage />
-      <Container>asdf</Container>
+      <Container>test</Container>
     </Wrapper>
   );
 };

@@ -28,7 +28,7 @@ const FirstPage = () => {
   };
 
   useEffect(() => {
-    fetchTest();
+    // fetchTest();
     window.addEventListener('scroll', onScroll);
     return () => {
       window.removeEventListener('scroll', onScroll);
