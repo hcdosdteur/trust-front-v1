@@ -33,6 +33,8 @@ export const SubMenu = () => {
   );
 };
 
+//https://13akstjq.github.io/react/2019/11/08/React-Transition-Group-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0.html
+
 const Wrapper = styled('div', {
   display: 'flex',
   position: 'fixed',
@@ -46,10 +48,10 @@ const Wrapper = styled('div', {
 
 const defaultStyle = {
   fontSize: '2rem',
-  fontWeight: 500,
+  fontWeight: 600,
   opacity: 0.5,
   cursor: 'pointer',
-  '&:hover': {
+  ':hover': {
     opacity: 1,
   },
 };
