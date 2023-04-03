@@ -19,7 +19,7 @@ globalCss({
     letterSpacing: '-0.02em',
   },
   '*::-webkit-scrollbar': {
-    // display: 'none',
+    display: 'none',
     width: '.6rem',
   },
   '*::-webkit-scrollbar-thumb': {

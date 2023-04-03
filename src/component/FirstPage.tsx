@@ -1,6 +1,7 @@
-import { styled } from '#/stitches.config';
+import { keyframes, styled } from '#/stitches.config';
 import { useEffect, useState } from 'react';
 import { MainMenu } from '@/component/Navigation/MainMenu';
+import TrustImg from '@/assets/icon/trust_in.svg';
 
 const FirstPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,8 +37,11 @@ const FirstPage = () => {
   }, []);
 
   return (
-    <MainContainer>
-      <Trust>TRUST</Trust>
+    <MainContainer animation={2}>
+      <Logo>
+        <TrustLogo animation={2} />
+        <Trust animation={2}>TRUST</Trust>
+      </Logo>
       <MainMenuContainer
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
@@ -50,12 +54,52 @@ const FirstPage = () => {
 
 export default FirstPage;
 
+const slideText = keyframes({
+  from: { width: 0 },
+  to: { width: '27rem' },
+});
+const imgOpacity1 = keyframes({
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+});
+const imgOpacity2 = keyframes({
+  from: { opacity: 1 },
+  to: { opacity: 0.25 },
+});
+const imgOpacity = keyframes({
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+});
+
 const MainContainer = styled('div', {
   display: 'flex',
   position: 'relative',
+  width: '100%',
   height: '100vh',
   alignItems: 'center',
   justifyContent: 'center',
+  variants: {
+    animation: {
+      1: {},
+      2: {
+        '&:before': {
+          content: '',
+          position: 'absolute',
+          backgroundImage: `url("${TrustImg}")`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'contain',
+          zIndex: -1,
+          width: '60rem',
+          height: '60rem',
+          opacity: 0,
+          animation: `${imgOpacity1} .2s ease-in, ${imgOpacity2} .5s ease-out`,
+          animationFillMode: 'forwards, forwards',
+          animationDelay: '.2s, 1s',
+        },
+      },
+    },
+  },
 });
 
 const MainMenuContainer = styled('div', {
@@ -65,8 +109,48 @@ const MainMenuContainer = styled('div', {
   height: '5.5rem',
 });
 
+const Logo = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+});
+
 const Trust = styled('div', {
-  fontSize: '9rem',
+  width: '27rem',
+  textIndent: '1.2rem',
+  fontSize: '8rem',
   fontWeight: 700,
   color: '#fff',
+  overflow: 'hidden',
+  animation: `${slideText} .7s ease-in-out`,
+  animationFillMode: 'backwards',
+  variants: {
+    animation: {
+      1: {
+        animationDelay: '1.6s',
+      },
+      2: {
+        animationDelay: '1.8s',
+      },
+    },
+  },
+});
+
+const TrustLogo = styled('div', {
+  width: '13rem',
+  height: '13rem',
+  backgroundImage: `url("${TrustImg}")`,
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
+  backgroundSize: 'contain',
+  animation: `${imgOpacity} .5s ease`,
+  animationDelay: '.5s',
+  animationFillMode: 'backwards',
+  variants: {
+    animation: {
+      1: {},
+      2: {
+        display: 'none',
+      },
+    },
+  },
 });
