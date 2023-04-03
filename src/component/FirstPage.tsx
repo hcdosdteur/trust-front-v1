@@ -7,7 +7,8 @@ const FirstPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isTop, setisTop] = useState<boolean>(true);
   const [enterMenu, setEnterMenu] = useState<boolean>(false);
-  const n = 1;
+
+  const n = 1; // 1 or 2
 
   const fetchTest = async () => {
     setLoading(true);
@@ -55,9 +56,13 @@ const FirstPage = () => {
 
 export default FirstPage;
 
-const slideText = keyframes({
+const slideText1 = keyframes({
   from: { width: 0 },
   to: { width: '33rem' },
+});
+const slideText2 = keyframes({
+  from: { width: 0 },
+  to: { width: '25rem' },
 });
 const imgOpacity1 = keyframes({
   from: { opacity: 0 },
@@ -116,24 +121,29 @@ const Logo = styled('div', {
 });
 
 const Trust = styled('div', {
-  width: '33rem',
-  textIndent: '1.5rem',
   fontSize: '8rem',
   fontWeight: 700,
   color: '#fff',
   overflow: 'hidden',
-  animation: `${slideText} .7s ease-in-out`,
-  animationFillMode: 'backwards',
   variants: {
     animation: {
       1: {
+        width: '33rem',
+        textIndent: '1.5rem',
+        animation: `${slideText1} .7s ease-in-out`,
         animationDelay: '1.6s',
+        animationFillMode: 'backwards',
       },
       2: {
+        width: '25rem',
+        textAlign: 'center',
+        animation: `${slideText2} .7s ease-in-out`,
         animationDelay: '1.8s',
+        animationFillMode: 'backwards',
       },
     },
   },
+  // animationFillMode: 'backwards',
 });
 
 const TrustLogo = styled('div', {
