@@ -7,6 +7,7 @@ const FirstPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isTop, setisTop] = useState<boolean>(true);
   const [enterMenu, setEnterMenu] = useState<boolean>(false);
+  const n = 1;
 
   const fetchTest = async () => {
     setLoading(true);
@@ -37,10 +38,10 @@ const FirstPage = () => {
   }, []);
 
   return (
-    <MainContainer animation={2}>
+    <MainContainer animation={n}>
       <Logo>
-        <TrustLogo animation={2} />
-        <Trust animation={2}>TRUST</Trust>
+        <TrustLogo animation={n} />
+        <Trust animation={n}>TRUST</Trust>
       </Logo>
       <MainMenuContainer
         onMouseEnter={onMouseEnter}
@@ -56,7 +57,7 @@ export default FirstPage;
 
 const slideText = keyframes({
   from: { width: 0 },
-  to: { width: '27rem' },
+  to: { width: '33rem' },
 });
 const imgOpacity1 = keyframes({
   from: { opacity: 0 },
@@ -115,8 +116,8 @@ const Logo = styled('div', {
 });
 
 const Trust = styled('div', {
-  width: '27rem',
-  textIndent: '1.2rem',
+  width: '33rem',
+  textIndent: '1.5rem',
   fontSize: '8rem',
   fontWeight: 700,
   color: '#fff',
