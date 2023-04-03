@@ -12,13 +12,13 @@ export const MainMenu: React.FC<{ top: boolean }> = ({ top }) => {
       <Link to="/loading ">
         <Home />
       </Link>
-      <Link to="/">
+      <Link to="/member">
         <Home />
       </Link>
       <Link to="/awards">
         <Home />
       </Link>
-      <Link to="/">
+      <Link to="/assignment">
         <Home />
       </Link>
     </Menu>

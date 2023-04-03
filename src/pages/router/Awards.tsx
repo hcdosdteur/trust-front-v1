@@ -1,5 +1,4 @@
 import { keyframes, styled } from '#/stitches.config';
-import { useEffect, useState } from 'react';
 
 const Award: React.FC<{
   rank: string;
@@ -95,10 +94,11 @@ const fadeinUp = keyframes({
   },
 });
 
+const s: string = '.05';
 const Container = styled('div', {
   display: 'flex',
   gap: '2rem',
-  animation: `${fadeinUp} 1s ease-in-out`,
+  animation: `${fadeinUp} .6s ease-in-out`,
   animationFillMode: 'forwards',
   opacity: 0,
   variants: {
@@ -107,28 +107,28 @@ const Container = styled('div', {
         animationDelay: '0',
       },
       2: {
-        animationDelay: 'calc(.1s * 1)',
+        animationDelay: `calc(${s}s * 1)`,
       },
       3: {
-        animationDelay: 'calc(.1s * 2)',
+        animationDelay: `calc(${s}s * 2)`,
       },
       4: {
-        animationDelay: 'calc(.1s * 3)',
+        animationDelay: `calc(${s}s * 3)`,
       },
       5: {
-        animationDelay: 'calc(.1s * 4)',
+        animationDelay: `calc(${s}s * 4)`,
       },
       6: {
-        animationDelay: 'calc(.1s * 5)',
+        animationDelay: `calc(${s}s * 5)`,
       },
       7: {
-        animationDelay: 'calc(.1s * 6)',
+        animationDelay: `calc(${s}s * 6)`,
       },
       8: {
-        animationDelay: 'calc(.1s * 7)',
+        animationDelay: `calc(${s}s * 7)`,
       },
       9: {
-        animationDelay: 'calc(.1s * 8)',
+        animationDelay: `calc(${s}s * 8)`,
       },
     },
   },
@@ -136,6 +136,7 @@ const Container = styled('div', {
 
 const Contents = styled('div', {
   span: {
+    whiteSpace: 'nowrap',
     fontSize: '2rem',
   },
 });

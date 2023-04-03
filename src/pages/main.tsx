@@ -31,4 +31,5 @@ const Wrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   overflowY: 'auto',
+  overflowX: 'hidden',
 });
