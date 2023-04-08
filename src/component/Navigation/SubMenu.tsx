@@ -1,5 +1,4 @@
 import { styled } from '#/stitches.config';
-import { useState, useEffect } from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 
 export const SubMenu = () => {
@@ -21,7 +20,7 @@ const Wrapper = styled('div', {
   justifyContent: 'center',
   textAlign: 'center',
   gap: '9rem',
-  zIndex: '10',
+  zIndex: 999,
 });
 
 const NavLink = styled(RRNavLink, {

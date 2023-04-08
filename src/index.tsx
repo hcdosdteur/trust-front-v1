@@ -35,6 +35,12 @@ globalCss({
     color: 'inherit',
     textDecoration: 'none',
   },
+  p: {
+    color: 'inherit',
+    fontSize: 'inherit',
+    fontWeight: 'inherit',
+    margin: 0,
+  },
 })();
 
 const Router = () => {

@@ -21,15 +21,14 @@ const filp = keyframes({
 });
 
 const Waviy = styled('div', {
-  // position: 'absolute',
+  display: 'flex',
+  position: 'fixed',
   width: '100vw',
   height: '100vh',
-  display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  // top: 0,
-  // left: 0,
-  zIndex: 999,
+  zIndex: 100,
+  userSelect: 'none',
 });
 
 const Span = styled('span', {

@@ -14,7 +14,7 @@ const Main = () => {
   }, [pathname]);
 
   return (
-    <Wrapper>
+    <Wrapper state={pathname !== '/'}>
       {pathname !== '/' && <SubMenu />}
       {NavigatedComponent[path] &&
         NavigatedComponent[path].map(({ Component }) => {
@@ -28,8 +28,14 @@ export default Main;
 
 const Wrapper = styled('div', {
   position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  overflowY: 'auto',
-  overflowX: 'hidden',
+  variants: {
+    state: {
+      true: {
+        display: 'flex',
+        flexDirection: 'column',
+        overflowY: 'auto',
+        overflowX: 'hidden',
+      },
+    },
+  },
 });

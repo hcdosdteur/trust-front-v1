@@ -4,23 +4,8 @@ import { MainMenu } from '@/component/Navigation/MainMenu';
 import TrustImg from '@/assets/icon/trust_in.svg';
 
 const FirstPage = () => {
-  const [loading, setLoading] = useState<boolean>(true);
   const [isTop, setisTop] = useState<boolean>(true);
   const [enterMenu, setEnterMenu] = useState<boolean>(false);
-
-  const n = 1; // 1 or 2
-
-  const fetchTest = async () => {
-    setLoading(true);
-    try {
-      const result = await fetch(`/api/test`);
-      let data = await result.text();
-      console.log(data);
-      setLoading(false);
-    } catch (error) {
-      window.alert('ERROR');
-    }
-  };
 
   const onMouseEnter = () => setEnterMenu(true);
   const onMouseLeave = () => setEnterMenu(false);
@@ -31,7 +16,6 @@ const FirstPage = () => {
   };
 
   useEffect(() => {
-    // fetchTest();
     window.addEventListener('scroll', onScroll);
     return () => {
       window.removeEventListener('scroll', onScroll);
@@ -39,10 +23,10 @@ const FirstPage = () => {
   }, []);
 
   return (
-    <MainContainer animation={n}>
+    <MainContainer>
       <Logo>
-        <TrustLogo animation={n} />
-        <Trust animation={n}>TRUST</Trust>
+        <TrustLogo />
+        <Trust>TRUST</Trust>
       </Logo>
       <MainMenuContainer
         onMouseEnter={onMouseEnter}
@@ -56,21 +40,10 @@ const FirstPage = () => {
 
 export default FirstPage;
 
+const T_width: number = 32;
 const slideText1 = keyframes({
   from: { width: 0 },
-  to: { width: '33rem' },
-});
-const slideText2 = keyframes({
-  from: { width: 0 },
-  to: { width: '25rem' },
-});
-const imgOpacity1 = keyframes({
-  from: { opacity: 0 },
-  to: { opacity: 1 },
-});
-const imgOpacity2 = keyframes({
-  from: { opacity: 1 },
-  to: { opacity: 0.25 },
+  to: { width: `${T_width}rem` },
 });
 const imgOpacity = keyframes({
   from: { opacity: 0 },
@@ -84,28 +57,6 @@ const MainContainer = styled('div', {
   height: '100vh',
   alignItems: 'center',
   justifyContent: 'center',
-  variants: {
-    animation: {
-      1: {},
-      2: {
-        '&:before': {
-          content: '',
-          position: 'absolute',
-          backgroundImage: `url("${TrustImg}")`,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundSize: 'contain',
-          zIndex: -1,
-          width: '60rem',
-          height: '60rem',
-          opacity: 0,
-          animation: `${imgOpacity1} .2s ease-in, ${imgOpacity2} .5s ease-out`,
-          animationFillMode: 'forwards, forwards',
-          animationDelay: '.2s, 1s',
-        },
-      },
-    },
-  },
 });
 
 const MainMenuContainer = styled('div', {
@@ -125,25 +76,11 @@ const Trust = styled('div', {
   fontWeight: 700,
   color: '#fff',
   overflow: 'hidden',
-  variants: {
-    animation: {
-      1: {
-        width: '33rem',
-        textIndent: '1.5rem',
-        animation: `${slideText1} .7s ease-in-out`,
-        animationDelay: '1.6s',
-        animationFillMode: 'backwards',
-      },
-      2: {
-        width: '25rem',
-        textAlign: 'center',
-        animation: `${slideText2} .7s ease-in-out`,
-        animationDelay: '1.8s',
-        animationFillMode: 'backwards',
-      },
-    },
-  },
-  // animationFillMode: 'backwards',
+  width: `${T_width}rem`,
+  textIndent: '1.8rem',
+  animation: `${slideText1} .7s ease-in-out`,
+  animationDelay: '1.6s',
+  animationFillMode: 'backwards',
 });
 
 const TrustLogo = styled('div', {
@@ -156,12 +93,4 @@ const TrustLogo = styled('div', {
   animation: `${imgOpacity} .5s ease`,
   animationDelay: '.5s',
   animationFillMode: 'backwards',
-  variants: {
-    animation: {
-      1: {},
-      2: {
-        display: 'none',
-      },
-    },
-  },
 });
