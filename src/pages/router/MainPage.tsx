@@ -14,10 +14,11 @@ export const MainPage = () => {
   const isAmong = (num: number, top: number, bottom: number) => {
     return num >= top && num <= bottom;
   };
-
   const getPoint = (top: number, bottom: number, rate: number) => {
     return top + (bottom - top) * rate;
   };
+
+  const [upbtn, setUpbtn] = useState<boolean>(false);
 
   const stickyContainer = useRef<HTMLDivElement>(null);
   const scrollDown = useRef<HTMLDivElement>(null);
@@ -47,7 +48,6 @@ export const MainPage = () => {
         element.style.transform = `translateY(${value}px)`;
         return;
       }
-
       element.style[styleName] = `${value}`;
     }
   };
@@ -89,6 +89,9 @@ export const MainPage = () => {
   const onScroll = () => {
     const scrollTop = window.scrollY;
     const currentPos = scrollTop + window.innerHeight / 2;
+
+    if (scrollTop >= 300) setUpbtn(true);
+    else setUpbtn(false);
 
     disabled.forEach((obj: defObj, id: string) => {
       if (isAmong(currentPos, obj.top, obj.bottom)) {
@@ -144,9 +147,7 @@ export const MainPage = () => {
   };
 
   const scrollTo = useScrollTo();
-  const reload = () => {
-    scrollTo({ top: 0, left: 0 });
-  };
+  const reload = () => scrollTo({ top: 0, left: 0 });
 
   useLayoutEffect(() => {
     initAnimation();
@@ -216,6 +217,9 @@ export const MainPage = () => {
             <Container>test5</Container>
           </Slide>
         </SlideContainer>
+        <GotoTopBtn opacity={upbtn} onClick={reload}>
+          UP
+        </GotoTopBtn>
       </Sticky>
     </StickyContainer>
   );
@@ -232,6 +236,7 @@ const Sticky = styled('div', {
   top: 0,
   width: '100%',
   height: '100vh',
+  userSelect: 'none',
 });
 
 const SlideContainer = styled('div', {
@@ -261,6 +266,33 @@ const Slide = styled('div', {
         display: 'flex !important',
       },
     },
+  },
+});
+
+const GotoTopBtn = styled('button', {
+  position: 'fixed',
+  bottom: 30,
+  right: 30,
+  zIndex: 100,
+  fontSize: '2rem',
+  backgroundColor: 'transparent',
+  border: '2px solid rgba(125, 125, 125)',
+  borderRadius: '50%',
+  padding: '1rem',
+  transition: '.08s',
+  opacity: '.5',
+  variants: {
+    opacity: {
+      false: {
+        visibility: 'hidden',
+      },
+      true: {
+        visibility: 'visible',
+      },
+    },
+  },
+  '&:hover': {
+    opacity: '1',
   },
 });
 
