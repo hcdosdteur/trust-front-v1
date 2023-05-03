@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { globalCss } from '#/stitches.config';
 import Main from '@/pages/main';
+import Login from '@/Login';
 
 import '@/assets/fonts/index.css';
 
@@ -46,6 +47,7 @@ globalCss({
 const Router = () => {
   return (
     <Routes>
+      <Route path="/login" element={<Login />}></Route>
       <Route path="/" element={<Main />} />
       <Route path="/awards" element={<Main />} />
       <Route path="/loading" element={<Main />} />
