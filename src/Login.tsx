@@ -1,4 +1,5 @@
 import { styled } from '#/stitches.config';
+import { Link } from 'react-router-dom';
 
 import TrustImg from '@/assets/icon/trust_in.svg';
 
@@ -23,7 +24,9 @@ const Login = () => {
               <ForgetPw onClick={forgetPw}>Forget Password?</ForgetPw>
             </Data>
           </UserDataSub>
-          <LoginBtn></LoginBtn>
+          <Link to={'/'}>
+            <LoginBtn></LoginBtn>
+          </Link>
         </UserData>
         <LinkCir>
           <Circle
@@ -66,6 +69,7 @@ const LoginContainer = styled('div', {
 
 const Title = styled('div', {
   fontSize: '3.5rem',
+  fontWeight: 400,
   textAlign: 'center',
   userSelect: 'none',
 });
@@ -102,7 +106,7 @@ const UserDataSub = styled('div', {
   width: 'inherit',
   display: 'inherit',
   flexDirection: 'inherit',
-  marginBottom: '3rem',
+  marginBottom: '2.4rem',
   gap: '2rem',
 });
 
@@ -110,34 +114,59 @@ const Data = styled('div', {
   display: 'inherit',
   flexDirection: 'inherit',
   gap: '.5rem',
+  div: {
+    fontWeight: 600,
+  },
 });
 
-const LoginBtn = styled('button', {
+const LoginBtn = styled('div', {
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
   fontSize: '2rem',
-  width: '12rem',
-  height: '4rem',
-  border: '.1rem solid $main',
-  borderRadius: '.3rem',
+  width: '4rem',
+  height: '4.2rem',
+  border: '.2rem solid transparent',
+  borderRadius: '1rem',
   cursor: 'pointer',
   transition: '.2s',
-  backgroundColor: 'transparent', //여기 애니메이션 만들기
+  backgroundColor: 'transparent',
   '&::before': {
     content: '',
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    transition: '.2s',
+    position: 'absolute',
     backgroundImage: `url("${TrustImg}")`,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '3rem',
+    backgroundSize: 'contain',
+  },
+  '&::after': {
+    content: 'Login',
+    opacity: 0,
+    position: 'absolute',
+    top: '.4rem',
+    fontSize: '2rem',
+    fontWeight: 600,
+    transition: '.2s',
   },
   '&:hover': {
-    backgroundImage: 'none',
+    width: '13rem',
+    border: '.2rem solid $main',
     '&::before': {
-      content: 'asdf',
+      opacity: 0,
+    },
+    '&::after': {
+      opacity: 1,
     },
   },
 });
 
 const Input = styled('input', {
   backgroundColor: 'transparent',
+  padding: '.2rem',
   outline: 'none',
   border: 'none',
   borderBottom: '.2rem solid $grade1',
