@@ -15,14 +15,14 @@ const Login = () => {
         <UserData>
           <UserDataSub>
             <Data>
-              <div>User Id</div>
-              <Input type="text" />
+              <Input type="text" name="" required />
+              <Label>User Id</Label>
             </Data>
             <Data>
-              <div>Password</div>
-              <Input type="text" />
-              <ForgetPw onClick={forgetPw}>Forget Password?</ForgetPw>
+              <Input type="text" name="" required />
+              <Label>Password</Label>
             </Data>
+            <ForgetPw onClick={forgetPw}>Forget Password?</ForgetPw>
           </UserDataSub>
           <Link to={'/'}>
             <LoginBtn></LoginBtn>
@@ -59,7 +59,7 @@ const LoginContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  minWidth: '35rem',
+  minWidth: '32rem',
   height: 'max-content',
   gap: '1.2rem',
   '*': {
@@ -68,7 +68,7 @@ const LoginContainer = styled('div', {
 });
 
 const Title = styled('div', {
-  fontSize: '3.5rem',
+  fontSize: '3.4rem',
   fontWeight: 400,
   textAlign: 'center',
   userSelect: 'none',
@@ -107,15 +107,18 @@ const UserDataSub = styled('div', {
   display: 'inherit',
   flexDirection: 'inherit',
   marginBottom: '2.4rem',
-  gap: '2rem',
+  gap: '3rem',
 });
 
 const Data = styled('div', {
+  position: 'relative',
   display: 'inherit',
   flexDirection: 'inherit',
   gap: '.5rem',
-  div: {
-    fontWeight: 600,
+  '& *': {
+    padding: '.6rem 0',
+    fontSize: '1.8rem',
+    fontWeight: 500,
   },
 });
 
@@ -124,7 +127,7 @@ const LoginBtn = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   fontSize: '2rem',
-  width: '4rem',
+  width: '5rem',
   height: '4.2rem',
   border: '.2rem solid transparent',
   borderRadius: '1rem',
@@ -136,7 +139,7 @@ const LoginBtn = styled('div', {
     display: 'block',
     width: '100%',
     height: '100%',
-    transition: '.2s',
+    transition: '.1s',
     position: 'absolute',
     backgroundImage: `url("${TrustImg}")`,
     backgroundPosition: 'center',
@@ -145,16 +148,18 @@ const LoginBtn = styled('div', {
   },
   '&::after': {
     content: 'Login',
+    textAlign: 'center',
+    width: '100%',
     opacity: 0,
     position: 'absolute',
-    top: '.4rem',
+    top: '.5rem',
     fontSize: '2rem',
     fontWeight: 600,
     transition: '.2s',
   },
   '&:hover': {
-    width: '13rem',
-    border: '.2rem solid $main',
+    width: '12rem',
+    borderColor: '$main',
     '&::before': {
       opacity: 0,
     },
@@ -166,11 +171,25 @@ const LoginBtn = styled('div', {
 
 const Input = styled('input', {
   backgroundColor: 'transparent',
-  padding: '.2rem',
   outline: 'none',
   border: 'none',
   borderBottom: '.2rem solid $grade1',
   width: '100%',
+  color: '#fff',
+  '&:focus ~ label, &:valid ~ label': {
+    top: '-1.6rem',
+    fontSize: '1.2rem',
+  },
+});
+
+const Label = styled('label', {
+  position: 'absolute',
+  display: 'block',
+  top: 0,
+  left: 0,
+  fontSize: '1.6rem',
+  pointerEvents: 'none',
+  transition: '.3s',
 });
 
 const ForgetPw = styled('span', {
