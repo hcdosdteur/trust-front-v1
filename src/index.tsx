@@ -9,7 +9,8 @@ import '@/assets/fonts/index.css';
 
 globalCss({
   ':root': {
-    fontSize: '10px',
+    '@moblie': { fontSize: '5px' },
+    '@pc': { fontSize: '10px' },
   },
   '*': {
     fontFamily: 'SFpro',

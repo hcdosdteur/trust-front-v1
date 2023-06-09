@@ -2,12 +2,10 @@ import { styled } from '#/stitches.config';
 import { Link } from 'react-router-dom';
 
 import TrustImg from '@/assets/icon/trust_in.svg';
+import Insta from '@/assets/icon/instagram.svg';
+import Github from '@/assets/icon/github.svg';
 
 const Login = () => {
-  const forgetPw = () => {
-    alert('동장에게 문의해 주세요');
-  };
-
   return (
     <Wrapper>
       <LoginContainer>
@@ -21,22 +19,44 @@ const Login = () => {
             <Data>
               <Input type="text" name="" required />
               <Label>Password</Label>
+              <ForgetPw
+                onClick={() => {
+                  alert('동장에게 문의해 주세요');
+                }}
+              >
+                Forget Password?
+              </ForgetPw>
             </Data>
-            <ForgetPw onClick={forgetPw}>Forget Password?</ForgetPw>
           </UserDataSub>
-          <Link to={'/'}>
-            <LoginBtn></LoginBtn>
+          <Link to={'/'}> 
+            {/* 여기 데이터 보내는걸로 바꿔야됨 */}
+            <LoginBtn />
           </Link>
         </UserData>
         <LinkCir>
           <Circle
-            onClick={() => {
-              location.href = 'https://www.dimigo.hs.kr/';
+            css={{
+              backgroundImage: `url("${Insta}")`,
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
             }}
-          />
-          <Circle
             onClick={() => {
-              alert('여기 뭐 넣지?');
+              location.href = 'https://www.instagram.com/trust_dimigo/';
+            }}
+          ></Circle>
+          <Circle
+            css={{
+              backgroundImage: `url("${Github}")`,
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+            onClick={() => {
+              let rand: number = Math.floor(Math.random() * 2);
+              let url: string = 'https://github.com/';
+              rand === 0
+                ? (url = 'https://github.com/hcdosdteur/')
+                : (url = 'https://github.com/whguswo/');
+              location.href = url;
             }}
           />
         </LinkCir>
@@ -59,7 +79,7 @@ const LoginContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  minWidth: '32rem',
+  minWidth: '34rem',
   height: 'max-content',
   gap: '1.2rem',
   '*': {
@@ -69,8 +89,8 @@ const LoginContainer = styled('div', {
 
 const Title = styled('div', {
   fontSize: '3.4rem',
-  fontWeight: 400,
   textAlign: 'center',
+  color: '#fff',
   userSelect: 'none',
 });
 
@@ -106,7 +126,7 @@ const UserDataSub = styled('div', {
   width: 'inherit',
   display: 'inherit',
   flexDirection: 'inherit',
-  marginBottom: '2.4rem',
+  marginBottom: '2.5rem',
   gap: '3rem',
 });
 
@@ -127,7 +147,7 @@ const LoginBtn = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   fontSize: '2rem',
-  width: '5rem',
+  width: '4.2rem',
   height: '4.2rem',
   border: '.2rem solid transparent',
   borderRadius: '1rem',
@@ -139,7 +159,7 @@ const LoginBtn = styled('div', {
     display: 'block',
     width: '100%',
     height: '100%',
-    transition: '.1s',
+    transition: '.2s',
     position: 'absolute',
     backgroundImage: `url("${TrustImg}")`,
     backgroundPosition: 'center',
@@ -185,17 +205,19 @@ const Input = styled('input', {
 const Label = styled('label', {
   position: 'absolute',
   display: 'block',
-  top: 0,
+  top: '.2rem',
   left: 0,
   fontSize: '1.6rem',
   pointerEvents: 'none',
-  transition: '.3s',
+  transition: '.4s',
 });
 
 const ForgetPw = styled('span', {
   cursor: 'pointer',
+  fontSize: '1.6rem',
   opacity: '.5',
-  width: 'fit-content',
+  padding: '.5rem 0',
+  textAlign: 'right',
   transition: '.1s',
   '&:hover': {
     opacity: '.6',
@@ -208,9 +230,8 @@ const LinkCir = styled('div', {
 });
 
 const Circle = styled('div', {
-  width: '5rem',
-  height: '5rem',
-  backgroundColor: 'gray',
+  width: '4.5rem',
+  height: '4.5rem',
   borderRadius: '50%',
   cursor: 'pointer',
 });

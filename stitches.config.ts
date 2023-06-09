@@ -18,4 +18,8 @@ export const {
   theme: {
     colors: COLORS,
   },
+  media: {
+    moblie: '(max-width: 1023px)',
+    pc: '(min-width: 1024px)',
+  },
 });
