@@ -28,7 +28,7 @@ const Login = () => {
               </ForgetPw>
             </Data>
           </UserDataSub>
-          <Link to={'/'}> 
+          <Link to={'/'}>
             {/* 여기 데이터 보내는걸로 바꿔야됨 */}
             <LoginBtn />
           </Link>
@@ -79,16 +79,16 @@ const LoginContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  minWidth: '34rem',
+  minWidth: '340px',
   height: 'max-content',
-  gap: '1.2rem',
+  gap: '12px',
   '*': {
     fontWeight: 500,
   },
 });
 
 const Title = styled('div', {
-  fontSize: '3.4rem',
+  fontSize: '34px',
   textAlign: 'center',
   color: '#fff',
   userSelect: 'none',
@@ -100,15 +100,15 @@ const UserData = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  padding: '3rem 0',
+  padding: '30px 0',
   '&::before': {
     content: '',
     position: 'absolute',
     top: 0,
     left: 0,
-    borderRadius: '.1rem',
+    borderRadius: '1px',
     width: '100%',
-    height: '.2rem',
+    height: '2px',
     backgroundColor: '$main',
   },
   '&::after': {
@@ -116,9 +116,9 @@ const UserData = styled('div', {
     position: 'absolute',
     bottom: 0,
     left: 0,
-    borderRadius: '.1rem',
+    borderRadius: '1px',
     width: '100%',
-    height: '.2rem',
+    height: '2px',
     backgroundColor: '$main',
   },
 });
@@ -126,18 +126,18 @@ const UserDataSub = styled('div', {
   width: 'inherit',
   display: 'inherit',
   flexDirection: 'inherit',
-  marginBottom: '2.5rem',
-  gap: '3rem',
+  marginBottom: '25px',
+  gap: '30px',
 });
 
 const Data = styled('div', {
   position: 'relative',
   display: 'inherit',
   flexDirection: 'inherit',
-  gap: '.5rem',
+  gap: '5px',
   '& *': {
-    padding: '.6rem 0',
-    fontSize: '1.8rem',
+    padding: '6px 0',
+    fontSize: '18px',
     fontWeight: 500,
   },
 });
@@ -146,11 +146,11 @@ const LoginBtn = styled('div', {
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
-  fontSize: '2rem',
-  width: '4.2rem',
-  height: '4.2rem',
-  border: '.2rem solid transparent',
-  borderRadius: '1rem',
+  fontSize: '20px',
+  width: '42px',
+  height: '42px',
+  border: '2px solid transparent',
+  borderRadius: '10px',
   cursor: 'pointer',
   transition: '.2s',
   backgroundColor: 'transparent',
@@ -172,13 +172,13 @@ const LoginBtn = styled('div', {
     width: '100%',
     opacity: 0,
     position: 'absolute',
-    top: '.5rem',
-    fontSize: '2rem',
+    top: '5px',
+    fontSize: '20px',
     fontWeight: 600,
     transition: '.2s',
   },
   '&:hover': {
-    width: '12rem',
+    width: '120px',
     borderColor: '$main',
     '&::before': {
       opacity: 0,
@@ -193,30 +193,30 @@ const Input = styled('input', {
   backgroundColor: 'transparent',
   outline: 'none',
   border: 'none',
-  borderBottom: '.2rem solid $grade1',
+  borderBottom: '2px solid $grade1',
   width: '100%',
   color: '#fff',
   '&:focus ~ label, &:valid ~ label': {
-    top: '-1.6rem',
-    fontSize: '1.2rem',
+    top: '-16px',
+    fontSize: '12px',
   },
 });
 
 const Label = styled('label', {
   position: 'absolute',
   display: 'block',
-  top: '.2rem',
+  top: '2px',
   left: 0,
-  fontSize: '1.6rem',
+  fontSize: '16px',
   pointerEvents: 'none',
   transition: '.4s',
 });
 
 const ForgetPw = styled('span', {
   cursor: 'pointer',
-  fontSize: '1.6rem',
+  fontSize: '16px',
   opacity: '.5',
-  padding: '.5rem 0',
+  padding: '5px 0',
   textAlign: 'right',
   transition: '.1s',
   '&:hover': {
@@ -226,12 +226,12 @@ const ForgetPw = styled('span', {
 
 const LinkCir = styled('div', {
   display: 'flex',
-  gap: '1.5rem',
+  gap: '15px',
 });
 
 const Circle = styled('div', {
-  width: '4.5rem',
-  height: '4.5rem',
+  width: '45px',
+  height: '45px',
   borderRadius: '50%',
   cursor: 'pointer',
 });

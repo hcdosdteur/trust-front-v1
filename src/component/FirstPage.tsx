@@ -1,9 +1,9 @@
 import { keyframes, styled } from '#/stitches.config';
 import { useEffect, useState } from 'react';
-import { MainMenu } from '@/component/Navigation/MainMenu';
+import { MainMenu, SubMenu } from '@/component/Navigation';
 import TrustImg from '@/assets/icon/trust_in.svg';
 
-const FirstPage = () => {
+const FirstPage: React.FC<{ device: string }> = ({ device }) => {
   const [isTop, setisTop] = useState<boolean>(true);
   const [enterMenu, setEnterMenu] = useState<boolean>(false);
 
@@ -28,12 +28,15 @@ const FirstPage = () => {
         <TrustLogo />
         <Trust>TRUST</Trust>
       </Logo>
-      <MainMenuContainer
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-      >
-        <MainMenu top={isTop && (enterMenu ? true : false)} />
-      </MainMenuContainer>
+      {device === 'moblie' && <SubMenu />}
+      {device === 'pc' && (
+        <MainMenuContainer
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+        >
+          <MainMenu top={isTop && (enterMenu ? true : false)} />
+        </MainMenuContainer>
+      )}
     </MainContainer>
   );
 };

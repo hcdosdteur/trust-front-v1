@@ -3,6 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { useScrollTo } from 'react-use-window-scroll';
 import { styled } from '#/stitches.config';
 import FirstPage from '@/component/FirstPage';
+import {
+  Container1,
+  Container2,
+  Container3,
+  Container4,
+  Container5,
+} from '@/component/SlideAnimation';
 
 export const MoblieMainPage = () => {
   const [upbtn, setUpbtn] = useState<boolean>(false);
@@ -26,38 +33,22 @@ export const MoblieMainPage = () => {
     <Wrapper>
       <SlideContainer>
         <Slide>
-          <FirstPage />
+          <FirstPage device="moblie" />
         </Slide>
         <Slide>
-          <Container>
-            <p>
-              <TRUST>TRUST</TRUST>는 해킹에 관심이 있고
-            </p>
-            <p>배우고자 하는 열정이 있는 친구들이 모여</p>
-            <p>함께 해킹을 공부합니다.</p>
-          </Container>
+          <Container1 />
         </Slide>
         <Slide>
-          <Container>
-            <CustomP>동아리 활동을 통해</CustomP>
-            <CustomDiv>
-              <p>정보보안의 기본적인 개념, 용어</p>
-              <p>프로그래밍 언어</p>
-              <p>여러가지 분야의 해킹기법</p>
-            </CustomDiv>
-            <CustomP>
-              등을 학습함으로써 정보보안에 대한 기초적인 지식을 쌓을 수 있습니다
-            </CustomP>
-          </Container>
+          <Container2 />
         </Slide>
         <Slide>
-          <Container>test3</Container>
+          <Container3 />
         </Slide>
         <Slide>
-          <Container>test4</Container>
+          <Container4 />
         </Slide>
         <Slide>
-          <Container>test5</Container>
+          <Container5 />
         </Slide>
       </SlideContainer>
       <GotoTopBtn opacity={upbtn} onClick={reload}>
@@ -80,13 +71,6 @@ const SlideContainer = styled('div', {
   justifyContent: 'center',
   width: '100%',
   height: '100%',
-});
-
-const ScrollDown = styled('div', {
-  position: 'absolute',
-  width: '100%',
-  height: '100vh',
-  top: 0,
 });
 
 const Slide = styled('div', {
@@ -122,30 +106,4 @@ const GotoTopBtn = styled('button', {
   '&:hover': {
     opacity: '1',
   },
-});
-
-const Container = styled('div', {
-  width: 'max-content',
-  fontSize: '4.5rem',
-  wordBreak: 'keep-all',
-});
-
-const TRUST = styled('span', {
-  fontSize: '6rem',
-  color: '#fff',
-});
-
-const CustomP = styled('p', {
-  fontSize: '3rem',
-  opacity: '.5',
-});
-
-const CustomDiv = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  color: 'inherit',
-  fontSize: 'inherit',
-  fontWeight: 'inherit',
-  gap: '1rem',
-  margin: '3rem 0',
 });

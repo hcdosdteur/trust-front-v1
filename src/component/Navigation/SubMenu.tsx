@@ -18,6 +18,7 @@ const Wrapper = styled('div', {
   width: '100%',
   top: '4.5rem',
   justifyContent: 'center',
+  backgroundColor: '#000',
   textAlign: 'center',
   gap: '9rem',
   zIndex: 999,

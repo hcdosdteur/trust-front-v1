@@ -9,7 +9,7 @@ import '@/assets/fonts/index.css';
 
 globalCss({
   ':root': {
-    '@moblie': { fontSize: '5px' },
+    '@moblie': { fontSize: '6px' },
     '@pc': { fontSize: '10px' },
   },
   '*': {

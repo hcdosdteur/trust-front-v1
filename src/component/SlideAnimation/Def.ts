@@ -5,13 +5,15 @@ const ease = bezierEasing(0.25, 0.1, 0.25, 1.0);
 const easeIn = bezierEasing(0.38, 0.01, 0.78, 0.13);
 const midSlow = bezierEasing(0, 0.7, 1, 0.3);
 
+const start: number = 600;
+
 export const def = new Map([
   [
     'slide1',
     {
       id: 'slide1',
-      top: 500, // element의 시작점
-      bottom: 1900, // element의 끝점
+      top: start, // element의 시작점
+      bottom: start + 1400, // element의 끝점
       topStyle: {
         // element의 시작 스타일
         opacity: 0,
@@ -25,8 +27,8 @@ export const def = new Map([
       animations: [
         {
           enabled: false, // 애니메이션 활성화 여부
-          top: 500, // 애니메이션 시작점
-          bottom: 1900, // 애니메이션 끝점
+          top: start, // 애니메이션 시작점
+          bottom: start + 1400, // 애니메이션 끝점
           easing: midSlow, // Easing Function
           styles: [
             // 애니메이션 시 변경될 스타일
@@ -39,8 +41,8 @@ export const def = new Map([
         },
         {
           enabled: false,
-          top: 500,
-          bottom: 800,
+          top: start,
+          bottom: start + 300,
           easing: ease,
           styles: [
             {
@@ -52,8 +54,8 @@ export const def = new Map([
         },
         {
           enabled: false,
-          top: 1400,
-          bottom: 1900,
+          top: start + 900,
+          bottom: start + 1400,
           easing: easeIn,
           styles: [
             {
@@ -71,7 +73,7 @@ export const def = new Map([
     {
       id: 'scroll-down',
       top: 0,
-      bottom: 700,
+      bottom: start + 200,
       topStyle: {
         opacity: 1,
       },
@@ -81,8 +83,8 @@ export const def = new Map([
       animations: [
         {
           enabled: false,
-          top: 500,
-          bottom: 700,
+          top: start,
+          bottom: start + 200,
           easing: easeIn,
           styles: [
             {
@@ -99,8 +101,8 @@ export const def = new Map([
     'slide2',
     {
       id: 'slide2',
-      top: 1900,
-      bottom: 3200,
+      top: start + 1400,
+      bottom: start + 2700,
       topStyle: {
         opacity: 0,
         translateY: -60,
@@ -112,8 +114,8 @@ export const def = new Map([
       animations: [
         {
           enabled: false,
-          top: 1900,
-          bottom: 3200,
+          top: start + 1400,
+          bottom: start + 2700,
           easing: midSlow,
           styles: [
             {
@@ -125,8 +127,8 @@ export const def = new Map([
         },
         {
           enabled: false,
-          top: 1900,
-          bottom: 2500,
+          top: start + 1400,
+          bottom: start + 2000,
           easing: ease,
           styles: [
             {
@@ -138,8 +140,8 @@ export const def = new Map([
         },
         {
           enabled: false,
-          top: 2600,
-          bottom: 3200,
+          top: start + 2100,
+          bottom: start + 2700,
           easing: easeIn,
           styles: [
             {
@@ -156,8 +158,8 @@ export const def = new Map([
     'slide3',
     {
       id: 'slide3',
-      top: 3300,
-      bottom: 4600,
+      top: start + 2800,
+      bottom: start + 4100,
       topStyle: {
         opacity: 0,
       },
@@ -167,8 +169,8 @@ export const def = new Map([
       animations: [
         {
           enabled: false,
-          top: 3300,
-          bottom: 4600,
+          top: start + 2800,
+          bottom: start + 4100,
           easing: midSlow,
           styles: [
             {
@@ -180,8 +182,8 @@ export const def = new Map([
         },
         {
           enabled: false,
-          top: 3300,
-          bottom: 3900,
+          top: start + 2800,
+          bottom: start + 3400,
           easing: ease,
           styles: [
             {
@@ -193,8 +195,8 @@ export const def = new Map([
         },
         {
           enabled: false,
-          top: 4000,
-          bottom: 4600,
+          top: start + 3500,
+          bottom: start + 4100,
           easing: easeIn,
           styles: [
             {
@@ -211,8 +213,8 @@ export const def = new Map([
     'slide4',
     {
       id: 'slide4',
-      top: 4700,
-      bottom: 6000,
+      top: start + 4200,
+      bottom: start + 5500,
       topStyle: {
         opacity: 0,
       },
@@ -222,8 +224,8 @@ export const def = new Map([
       animations: [
         {
           enabled: false,
-          top: 4700,
-          bottom: 6000,
+          top: start + 4200,
+          bottom: start + 5500,
           easing: midSlow,
           styles: [
             {
@@ -235,8 +237,8 @@ export const def = new Map([
         },
         {
           enabled: false,
-          top: 4700,
-          bottom: 5300,
+          top: start + 4200,
+          bottom: start + 4800,
           easing: ease,
           styles: [
             {
@@ -248,8 +250,8 @@ export const def = new Map([
         },
         {
           enabled: false,
-          top: 5400,
-          bottom: 6000,
+          top: start + 4900,
+          bottom: start + 5500,
           easing: easeIn,
           styles: [
             {
@@ -266,8 +268,8 @@ export const def = new Map([
     'slide5',
     {
       id: 'slide5',
-      top: 6100,
-      bottom: 9000,
+      top: start + 5600,
+      bottom: start + 8500,
       topStyle: {
         opacity: 0,
       },
@@ -277,8 +279,8 @@ export const def = new Map([
       animations: [
         {
           enabled: false,
-          top: 6100,
-          bottom: 7100,
+          top: start + 5600,
+          bottom: start + 6600,
           easing: midSlow,
           styles: [
             {
@@ -290,8 +292,8 @@ export const def = new Map([
         },
         {
           enabled: false,
-          top: 6100,
-          bottom: 6700,
+          top: start + 5600,
+          bottom: start + 6200,
           easing: ease,
           styles: [
             {
