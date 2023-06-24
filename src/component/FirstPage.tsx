@@ -43,7 +43,7 @@ const FirstPage: React.FC<{ device: string }> = ({ device }) => {
 
 export default FirstPage;
 
-const T_width: number = 32;
+const T_width: number = 20.5;
 const slideText1 = keyframes({
   from: { width: 0 },
   to: { width: `${T_width}rem` },
@@ -75,20 +75,20 @@ const Logo = styled('div', {
 });
 
 const Trust = styled('div', {
-  fontSize: '8rem',
+  fontSize: '6rem',
   fontWeight: 700,
   color: '#fff',
   overflow: 'hidden',
   width: `${T_width}rem`,
-  textIndent: '1.8rem',
+  textIndent: '2rem',
   animation: `${slideText1} .7s ease-in-out`,
   animationDelay: '1.6s',
   animationFillMode: 'backwards',
 });
 
 const TrustLogo = styled('div', {
-  width: '13rem',
-  height: '13rem',
+  width: '10rem',
+  height: '10rem',
   backgroundImage: `url("${TrustImg}")`,
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',

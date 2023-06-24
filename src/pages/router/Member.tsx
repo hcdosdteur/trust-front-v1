@@ -1,7 +1,7 @@
 import { styled } from '#/stitches.config';
 
 export const Member = () => {
-  return <Wrapper>맴버 페이지 입니다.</Wrapper>;
+  return <Wrapper>asdf</Wrapper>;
 };
 
 const Wrapper = styled('div', {
