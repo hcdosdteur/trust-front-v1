@@ -1,11 +1,30 @@
-import { styled } from '#/stitches.config';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { styled } from '#/stitches.config';
 
 import TrustImg from '@/assets/icon/trust_in.svg';
 import Insta from '@/assets/icon/instagram.svg';
 import Github from '@/assets/icon/github.svg';
 
 const Login = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const fetchTest = async () => {
+    setLoading(true);
+    try {
+      const target = '/api/test';
+      const result = await fetch(`${target}`);
+      let data = await result.text();
+      if (!data) throw new Error(`data is empty.\n${target}`);
+      console.log(data);
+      setLoading(false);
+    } catch (error) {
+      let message = 'Unknown Error';
+      if (error instanceof Error) message = error.message;
+      alert('Error: ' + message);
+    }
+  };
+
   return (
     <Wrapper>
       <LoginContainer>
@@ -28,7 +47,7 @@ const Login = () => {
               </ForgetPw>
             </Data>
           </UserDataSub>
-          <Link to={'/'}>
+          <Link to="/">
             {/* 여기 데이터 보내는걸로 바꿔야됨 */}
             <LoginBtn />
           </Link>
@@ -60,6 +79,9 @@ const Login = () => {
             }}
           />
         </LinkCir>
+        <div>
+          Don't have an account? <Link to="/signup">Sign up</Link>
+        </div>
       </LoginContainer>
     </Wrapper>
   );

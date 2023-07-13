@@ -1,11 +1,13 @@
 import { keyframes, styled } from '#/stitches.config';
 import { useEffect, useState } from 'react';
 import { MainMenu, SubMenu } from '@/component/Navigation';
+import { useNavigate } from 'react-router-dom';
 import TrustImg from '@/assets/icon/trust_in.svg';
 
 const FirstPage: React.FC<{ device: string }> = ({ device }) => {
   const [isTop, setisTop] = useState<boolean>(true);
   const [enterMenu, setEnterMenu] = useState<boolean>(false);
+  let navigate = useNavigate();
 
   const onMouseEnter = () => setEnterMenu(true);
   const onMouseLeave = () => setEnterMenu(false);
@@ -13,6 +15,10 @@ const FirstPage: React.FC<{ device: string }> = ({ device }) => {
   const onScroll = () => {
     if (window.scrollY === 0) setisTop(true);
     else setisTop(false);
+  };
+
+  const onClick = () => {
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -26,7 +32,7 @@ const FirstPage: React.FC<{ device: string }> = ({ device }) => {
     <MainContainer>
       <Logo>
         <TrustLogo />
-        <Trust>TRUST</Trust>
+        <Trust onClick={onClick}>TRUST</Trust>
       </Logo>
       {device === 'moblie' && <SubMenu />}
       {device === 'pc' && (
@@ -60,6 +66,7 @@ const MainContainer = styled('div', {
   height: '100vh',
   alignItems: 'center',
   justifyContent: 'center',
+  zIndex: '100',
 });
 
 const MainMenuContainer = styled('div', {

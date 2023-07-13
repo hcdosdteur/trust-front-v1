@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { globalCss } from '#/stitches.config';
 import Main from '@/pages/main';
 import Login from '@/Login';
+import Signup from '@/Signup';
 
 import '@/assets/fonts/index.css';
 
@@ -49,6 +50,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/awards" element={<Main />} />
       <Route path="/loading" element={<Main />} />
       <Route path="/member" element={<Main />} />

@@ -15,8 +15,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive": "^9.0.2",
-    "react-router-dom": "^6.9.0",
-    "react-use-window-scroll": "^1.1.1",
+    "react-router-dom": "^6.14.1",
     "vite-plugin-svgr": "^2.4.0"
   },
   "devDependencies": {

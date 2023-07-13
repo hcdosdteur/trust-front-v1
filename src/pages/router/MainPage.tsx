@@ -1,7 +1,8 @@
-import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-import { PcMainPage, MoblieMainPage } from '@/component/SlideAnimation';
+import { PcMainPage, MobileMainPage } from '@/component/SlideAnimation';
+import ProgressBar from '@/component/ProgressBar';
+import { useEffect, useState } from 'react';
 
 export const MainPage = () => {
   const isPc = useMediaQuery({
@@ -11,10 +12,15 @@ export const MainPage = () => {
     query: '(max-width:1023px)',
   });
 
+  useEffect(() => {
+    console.log(isPc, isMobile);
+  }, []);
+
   return (
     <>
+      <ProgressBar />
       {isPc && <PcMainPage />}
-      {isMobile && <MoblieMainPage />}
+      {isMobile && <MobileMainPage />}
     </>
   );
 };

@@ -1,6 +1,5 @@
 import { RefObject, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useScrollTo } from 'react-use-window-scroll';
 import { styled } from '#/stitches.config';
 import FirstPage from '@/component/FirstPage';
 import {
@@ -11,16 +10,15 @@ import {
   Container5,
 } from '@/component/SlideAnimation';
 
-export const MoblieMainPage = () => {
+export const MobileMainPage = () => {
   const [upbtn, setUpbtn] = useState<boolean>(false);
 
-  const scrollTo = useScrollTo();
   const onScroll = () => {
     const scrollTop = window.scrollY;
     if (scrollTop >= 300) setUpbtn(true);
     else setUpbtn(false);
   };
-  const reload = () => scrollTo({ top: 0, left: 0 });
+  const reload = () => window.scrollTo(0, 0);
 
   useEffect(() => {
     window.addEventListener('load', reload);
@@ -33,7 +31,7 @@ export const MoblieMainPage = () => {
     <Wrapper>
       <SlideContainer>
         <Slide>
-          <FirstPage device="moblie" />
+          <FirstPage device="mobile" />
         </Slide>
         <Slide>
           <Container1 />

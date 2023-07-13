@@ -1,6 +1,5 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useScrollTo } from 'react-use-window-scroll';
-import { styled } from '#/stitches.config';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { styled, keyframes } from '#/stitches.config';
 import FirstPage from '@/component/FirstPage';
 import {
   Container1,
@@ -12,6 +11,7 @@ import {
 
 import { def } from '@/component/SlideAnimation/Def';
 import { elementType, defObj } from '@/types/scrollAnimation';
+import arrow from '@/assets/icon/arrow.svg';
 
 export const PcMainPage = () => {
   const enabled = new Map();
@@ -96,7 +96,7 @@ export const PcMainPage = () => {
     const scrollTop = window.scrollY;
     const currentPos = scrollTop + window.innerHeight / 2;
 
-    if (scrollTop >= 300) setUpbtn(true);
+    if (scrollTop >= 200) setUpbtn(true);
     else setUpbtn(false);
 
     disabled.forEach((obj: defObj, id: string) => {
@@ -152,15 +152,13 @@ export const PcMainPage = () => {
     else return undefined;
   };
 
-  const scrollTo = useScrollTo();
-  const reload = () => scrollTo({ top: 0, left: 0 });
+  const reload = () => window.scrollTo(0, 0);
 
   useLayoutEffect(() => {
     initAnimation();
   }, []);
 
   useEffect(() => {
-    reload();
     window.addEventListener('load', reload);
     window.addEventListener('scroll', onScroll);
     return () => {
@@ -207,9 +205,7 @@ export const PcMainPage = () => {
             <Container5 />
           </Slide>
         </SlideContainer>
-        <GotoTopBtn opacity={upbtn} onClick={reload}>
-          UP
-        </GotoTopBtn>
+        <GotoTopBtn opacity={upbtn} onClick={reload} />
       </Sticky>
     </StickyContainer>
   );
@@ -218,7 +214,7 @@ export const PcMainPage = () => {
 const StickyContainer = styled('div', {
   position: 'relative',
   width: '100%',
-  height: '710rem',
+  height: '730rem',
 });
 
 const Sticky = styled('div', {
@@ -259,8 +255,19 @@ const Slide = styled('div', {
   },
 });
 
+const hidden = keyframes({
+  '0%': { transform: 'translateX(0)' },
+  '100%': { transform: 'translateX(10rem)' },
+});
+const show = keyframes({
+  '0%': { transform: 'translateX(10rem)' },
+  '100%': { transform: 'translateX(0)' },
+});
+
 const GotoTopBtn = styled('button', {
   position: 'fixed',
+  width: '4.5rem',
+  height: '4.5rem',
   bottom: 30,
   right: 30,
   zIndex: 100,
@@ -269,15 +276,21 @@ const GotoTopBtn = styled('button', {
   border: '2px solid rgba(125, 125, 125)',
   borderRadius: '50%',
   padding: '1rem',
-  transition: '.08s',
+  transition: 'all ease-in-out',
+  transform: 'translateX(10rem)',
   opacity: '.5',
+  backgroundImage: `url("${arrow}")`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'contain',
   variants: {
     opacity: {
       false: {
-        visibility: 'hidden',
+        animation: `${hidden} 300ms`,
+        animationFillMode: 'forwards',
       },
       true: {
-        visibility: 'visible',
+        animation: `${show} 300ms`,
+        animationFillMode: 'forwards',
       },
     },
   },
