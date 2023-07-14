@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { styled } from '@stitches/react';
+import { keyframes } from '#/stitches.config';
 
 const ProgressBar = () => {
   const bar = useRef<HTMLDivElement>(null);
@@ -30,6 +31,11 @@ const ProgressBar = () => {
 
 export default ProgressBar;
 
+const show = keyframes({
+  '0%': { transform: 'translateY(-0.5rem)' },
+  '100%': { transform: 'translateY(0)' },
+});
+
 const bar_h = '.5rem';
 const Progress = styled('div', {
   position: 'fixed',
@@ -37,7 +43,8 @@ const Progress = styled('div', {
   height: bar_h,
   backgroundColor: '#404040',
   zIndex: '10',
-  transition: 'all .2s ease-in-out',
+  transition: 'all ease-in-out',
+  animation: `${show} .5s`,
 });
 
 const Bar = styled('div', {

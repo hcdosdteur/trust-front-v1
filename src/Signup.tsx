@@ -1,86 +1,92 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { styled } from '#/stitches.config';
 
 import TrustImg from '@/assets/icon/trust_in.svg';
-import Insta from '@/assets/icon/instagram.svg';
-import Github from '@/assets/icon/github.svg';
+
+interface confirmInput {
+  id: string;
+  password: string;
+  confirmPassword: string;
+}
 
 const Signup = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [input, setInput] = useState<confirmInput>({
+    id: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const [pass, setPass] = useState<boolean>(true);
+  const navigate = useNavigate();
 
-  const fetchTest = async () => {
-    setLoading(true);
-    try {
-      const target = '/api/test';
-      const result = await fetch(`${target}`);
-      let data = await result.text();
-      if (!data) throw new Error(`data is empty.\n${target}`);
-      console.log(data);
-      setLoading(false);
-    } catch (error) {
-      let message = 'Unknown Error';
-      if (error instanceof Error) message = error.message;
-      alert('Error: ' + message);
-    }
+  const createAccount = () => {
+    if (
+      input.password !== '' &&
+      input.confirmPassword !== '' &&
+      input.id !== ''
+    ) {
+      validateInput();
+      alert('가입이 완료되었습니다.\n로그인 페이지로 이동합니다.');
+      navigate('/login');
+    } else alert('입력하지 않은 값이 존재합니다.');
   };
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInput((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const validateInput = () => {
+    input.password === input.confirmPassword ? setPass(true) : setPass(false);
+  };
+
+  useEffect(() => {
+    validateInput();
+  }, [input]);
 
   return (
     <Wrapper>
       <LoginContainer>
-        <Title>USER LOGIN</Title>
+        <Title>TRUST</Title>
         <UserData>
           <UserDataSub>
             <Data>
-              <Input type="text" name="" required />
+              <Input type="text" value={input.id} pass={true} required />
               <Label>User Id</Label>
             </Data>
             <Data>
-              <Input type="text" name="" required />
-              <Label>Password</Label>
-              <ForgetPw
-                onClick={() => {
-                  alert('동장에게 문의해 주세요');
-                }}
-              >
-                Forget Password?
-              </ForgetPw>
+              <Input
+                type="password"
+                name="password"
+                value={input.password}
+                onChange={onInputChange}
+                pass={pass ? true : false}
+                required
+              />
+              <Label pass={pass ? true : false}>Password</Label>
+            </Data>
+            <Data>
+              <Input
+                type="password"
+                name="confirmPassword"
+                value={input.confirmPassword}
+                onChange={onInputChange}
+                pass={pass ? true : false}
+                required
+              />
+              <Label pass={pass ? true : false}>Confirm Password</Label>
             </Data>
           </UserDataSub>
-          <Link to="/">
-            {/* 여기 데이터 보내는걸로 바꿔야됨 */}
-            <LoginBtn />
-          </Link>
+          <LoginBtn onClick={createAccount}>
+            <span>Sign In</span>
+          </LoginBtn>
         </UserData>
-        <LinkCir>
-          <Circle
-            css={{
-              backgroundImage: `url("${Insta}")`,
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-            onClick={() => {
-              location.href = 'https://www.instagram.com/trust_dimigo/';
-            }}
-          ></Circle>
-          <Circle
-            css={{
-              backgroundImage: `url("${Github}")`,
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-            onClick={() => {
-              let rand: number = Math.floor(Math.random() * 2);
-              let url: string = 'https://github.com/';
-              rand === 0
-                ? (url = 'https://github.com/hcdosdteur/')
-                : (url = 'https://github.com/whguswo/');
-              location.href = url;
-            }}
-          />
-        </LinkCir>
         <div>
-          Don't have an account? <Link to="/signup">Sign up</Link>
+          Already have an account? <StyledLink to="/login">Login</StyledLink>
         </div>
       </LoginContainer>
     </Wrapper>
@@ -103,7 +109,7 @@ const LoginContainer = styled('div', {
   alignItems: 'center',
   minWidth: '340px',
   height: 'max-content',
-  gap: '12px',
+  gap: '15px',
   '*': {
     fontWeight: 500,
   },
@@ -122,7 +128,7 @@ const UserData = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  padding: '30px 0',
+  padding: '35px 0',
   '&::before': {
     content: '',
     position: 'absolute',
@@ -148,7 +154,7 @@ const UserDataSub = styled('div', {
   width: 'inherit',
   display: 'inherit',
   flexDirection: 'inherit',
-  marginBottom: '25px',
+  marginBottom: '40px',
   gap: '30px',
 });
 
@@ -167,47 +173,17 @@ const Data = styled('div', {
 const LoginBtn = styled('div', {
   position: 'relative',
   display: 'flex',
+  alignItems: 'center',
   justifyContent: 'center',
   fontSize: '20px',
-  width: '42px',
+  width: '100%',
   height: '42px',
-  border: '2px solid transparent',
-  borderRadius: '10px',
+  border: '2px solid $main',
   cursor: 'pointer',
-  transition: '.2s',
   backgroundColor: 'transparent',
-  '&::before': {
-    content: '',
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    transition: '.2s',
-    position: 'absolute',
-    backgroundImage: `url("${TrustImg}")`,
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-  },
-  '&::after': {
-    content: 'Login',
-    textAlign: 'center',
-    width: '100%',
-    opacity: 0,
-    position: 'absolute',
-    top: '5px',
+  color: '#fff',
+  span: {
     fontSize: '20px',
-    fontWeight: 600,
-    transition: '.2s',
-  },
-  '&:hover': {
-    width: '120px',
-    borderColor: '$main',
-    '&::before': {
-      opacity: 0,
-    },
-    '&::after': {
-      opacity: 1,
-    },
   },
 });
 
@@ -215,9 +191,19 @@ const Input = styled('input', {
   backgroundColor: 'transparent',
   outline: 'none',
   border: 'none',
-  borderBottom: '2px solid $grade1',
+  variants: {
+    pass: {
+      true: {
+        borderBottom: '2px solid $grade1',
+      },
+      false: {
+        borderBottom: '2px solid $incorrect',
+      },
+    },
+  },
   width: '100%',
   color: '#fff',
+  transition: '.4s',
   '&:focus ~ label, &:valid ~ label': {
     top: '-16px',
     fontSize: '12px',
@@ -231,29 +217,21 @@ const Label = styled('label', {
   left: 0,
   fontSize: '16px',
   pointerEvents: 'none',
+  variants: {
+    pass: {
+      true: {
+        color: '$main',
+      },
+      false: {
+        color: '$incorrect',
+      },
+    },
+  },
   transition: '.4s',
 });
 
-const ForgetPw = styled('span', {
-  cursor: 'pointer',
-  fontSize: '16px',
-  opacity: '.5',
-  padding: '5px 0',
-  textAlign: 'right',
-  transition: '.1s',
-  '&:hover': {
-    opacity: '.6',
-  },
-});
-
-const LinkCir = styled('div', {
-  display: 'flex',
-  gap: '15px',
-});
-
-const Circle = styled('div', {
-  width: '45px',
-  height: '45px',
-  borderRadius: '50%',
-  cursor: 'pointer',
+const StyledLink = styled(Link, {
+  color: '#fff',
+  textDecoration: 'underline',
+  paddingLeft: '3px',
 });

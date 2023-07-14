@@ -48,8 +48,9 @@ const Login = () => {
             </Data>
           </UserDataSub>
           <Link to="/">
-            {/* 여기 데이터 보내는걸로 바꿔야됨 */}
-            <LoginBtn />
+            <LoginBtn>
+              <span>Login</span>
+            </LoginBtn>
           </Link>
         </UserData>
         <LinkCir>
@@ -80,7 +81,7 @@ const Login = () => {
           />
         </LinkCir>
         <div>
-          Don't have an account? <Link to="/signup">Sign up</Link>
+          Don't have an account? <StyledLink to="/signup">Sign up</StyledLink>
         </div>
       </LoginContainer>
     </Wrapper>
@@ -103,7 +104,7 @@ const LoginContainer = styled('div', {
   alignItems: 'center',
   minWidth: '340px',
   height: 'max-content',
-  gap: '12px',
+  gap: '15px',
   '*': {
     fontWeight: 500,
   },
@@ -122,7 +123,7 @@ const UserData = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  padding: '30px 0',
+  padding: '35px 0',
   '&::before': {
     content: '',
     position: 'absolute',
@@ -148,7 +149,7 @@ const UserDataSub = styled('div', {
   width: 'inherit',
   display: 'inherit',
   flexDirection: 'inherit',
-  marginBottom: '25px',
+  marginBottom: '30px',
   gap: '30px',
 });
 
@@ -167,47 +168,17 @@ const Data = styled('div', {
 const LoginBtn = styled('div', {
   position: 'relative',
   display: 'flex',
+  alignItems: 'center',
   justifyContent: 'center',
   fontSize: '20px',
-  width: '42px',
+  width: '100%',
   height: '42px',
-  border: '2px solid transparent',
-  borderRadius: '10px',
+  border: '2px solid $main',
   cursor: 'pointer',
-  transition: '.2s',
   backgroundColor: 'transparent',
-  '&::before': {
-    content: '',
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    transition: '.2s',
-    position: 'absolute',
-    backgroundImage: `url("${TrustImg}")`,
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-  },
-  '&::after': {
-    content: 'Login',
-    textAlign: 'center',
-    width: '100%',
-    opacity: 0,
-    position: 'absolute',
-    top: '5px',
+  span: {
+    color: '#fff',
     fontSize: '20px',
-    fontWeight: 600,
-    transition: '.2s',
-  },
-  '&:hover': {
-    width: '120px',
-    borderColor: '$main',
-    '&::before': {
-      opacity: 0,
-    },
-    '&::after': {
-      opacity: 1,
-    },
   },
 });
 
@@ -249,6 +220,7 @@ const ForgetPw = styled('span', {
 const LinkCir = styled('div', {
   display: 'flex',
   gap: '15px',
+  // padding: '10px 0',
 });
 
 const Circle = styled('div', {
@@ -256,4 +228,10 @@ const Circle = styled('div', {
   height: '45px',
   borderRadius: '50%',
   cursor: 'pointer',
+});
+
+const StyledLink = styled(Link, {
+  color: '#fff',
+  textDecoration: 'underline',
+  paddingLeft: '3px',
 });

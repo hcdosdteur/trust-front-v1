@@ -35,6 +35,8 @@ globalCss({
     margin: 0,
   },
   a: {
+    width: 'inherit',
+    height: 'inherit',
     color: 'inherit',
     textDecoration: 'none',
   },
