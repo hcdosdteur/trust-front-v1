@@ -12,6 +12,7 @@ import {
 import { def } from '@/component/SlideAnimation/Def';
 import { elementType, defObj } from '@/types/scrollAnimation';
 import arrow from '@/assets/icon/arrow.svg';
+import { useLocation } from 'react-router-dom';
 
 export const PcMainPage = () => {
   const enabled = new Map();
@@ -152,17 +153,18 @@ export const PcMainPage = () => {
     else return undefined;
   };
 
-  const reload = () => window.scrollTo(0, 0);
+  const scrollToTop = () => window.scrollTo({ top: 0, left: 0 });
 
   useLayoutEffect(() => {
     initAnimation();
   }, []);
 
   useEffect(() => {
-    window.addEventListener('load', reload);
+    window.addEventListener('beforeunload', scrollToTop);
+
     window.addEventListener('scroll', onScroll);
     return () => {
-      window.removeEventListener('load', reload);
+      window.removeEventListener('beforeunload', scrollToTop);
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
@@ -205,7 +207,7 @@ export const PcMainPage = () => {
             <Container5 />
           </Slide>
         </SlideContainer>
-        <GotoTopBtn opacity={upbtn} onClick={reload} />
+        <GotoTopBtn opacity={upbtn} onClick={scrollToTop} />
       </Sticky>
     </StickyContainer>
   );

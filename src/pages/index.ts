@@ -5,4 +5,4 @@ import loadable from '@loadable/component';
 //   Teacher: loadable(() => import('./Main/Teacher')),
 // };
 
-export const Login = loadable(() => import('../Login'));
+export const Login = loadable(() => import('../component/auth/Login'));

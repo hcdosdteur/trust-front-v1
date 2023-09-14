@@ -4,10 +4,18 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 export const SubMenu = () => {
   return (
     <Wrapper>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/member">Member</NavLink>
-      <NavLink to="/awards">Awards</NavLink>
-      <NavLink to="/assignment">Assignment</NavLink>
+      <div>
+        <NavLink to="/">Home</NavLink>
+      </div>
+      <div>
+        <NavLink to="/member">Member</NavLink>
+      </div>
+      <div>
+        <NavLink to="/awards">Awards</NavLink>
+      </div>
+      <div>
+        <NavLink to="/assignment">Assignment</NavLink>
+      </div>
     </Wrapper>
   );
 };

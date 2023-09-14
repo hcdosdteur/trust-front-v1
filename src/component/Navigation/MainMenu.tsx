@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { styled, keyframes } from '#/stitches.config';
 import { Link } from 'react-router-dom';
 
@@ -6,61 +7,59 @@ import { ReactComponent as Home } from '@/assets/icon/home.svg';
 export const MainMenu: React.FC<{ top: boolean }> = ({ top }) => {
   return (
     <Menu display={top}>
-      <Link to="/">
-        <Home />
-      </Link>
-      <Link to="/loading ">
-        <Home />
-      </Link>
-      <Link to="/member">
-        <Home />
-      </Link>
-      <Link to="/awards">
-        <Home />
-      </Link>
-      <Link to="/assignment">
-        <Home />
-      </Link>
+      <Text>
+        <Link to="/login">LOGIN</Link>
+      </Text>
+      <Text>
+        <Link to="/member">MEMBER</Link>
+      </Text>
+      <Text>
+        <Link to="/awards">AWARD</Link>
+      </Text>
+      <Text>
+        <Link to="/assignment">ASSIGNMENT</Link>
+      </Text>
     </Menu>
   );
 };
 
 const fadein = keyframes({
-  from: { opacity: 0 },
-  to: { opacity: 1 },
+  from: { transform: 'translateY(6rem)' },
+  to: { transform: 'translateY(0)' },
 });
 
 const fadeout = keyframes({
-  from: { opacity: 1 },
-  to: { opacity: 0 },
+  from: { transform: 'translateY(0)' },
+  to: { transform: 'translateY(6rem)' },
 });
 
 const Menu = styled('div', {
   display: 'flex',
   position: 'inherit',
   width: '100%',
-  height: '100%',
+  hetommight: '100%',
   padding: '.5rem',
-  justifyContent: 'space-evenly',
-  svg: {
-    cursor: 'pointer',
-    fill: '#404040',
-    transition: '.1s ease-out',
-    '&:hover': {
-      fill: '#e2e2e2',
-      scale: 1.1,
-    },
-  },
+  justifyContent: 'space-between',
+  transition: 'all .2s ease-in-out',
+  transform: 'translateY(6rem)',
   variants: {
     display: {
       true: {
-        animation: `${fadein} .25s`,
-        visibility: 'visible',
+        animation: `${fadein} .2s`,
+        animationFillMode: 'forwards',
       },
       false: {
-        animation: `${fadeout} .25s`,
-        visibility: 'hidden',
+        animation: `${fadeout} .2s`,
+        animationFillMode: 'forwards',
       },
     },
+  },
+});
+
+const Text = styled('span', {
+  transition: 'all .1s ease-in-out',
+  opacity: 0.5,
+  '&:hover': {
+    opacity: 1,
   },
 });

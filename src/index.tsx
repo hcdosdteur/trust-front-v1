@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { globalCss } from '#/stitches.config';
 import Main from '@/pages/main';
-import Login from '@/Login';
-import Signup from '@/Signup';
+import Login from '@/component/auth/Login';
+import Signup from '@/component/auth/Signup';
+
+import { RecoilRoot } from 'recoil';
 
 import '@/assets/fonts/index.css';
 
@@ -52,7 +54,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/register" element={<Signup />} />
       <Route path="/awards" element={<Main />} />
       <Route path="/loading" element={<Main />} />
       <Route path="/member" element={<Main />} />
@@ -64,9 +66,9 @@ const Router = () => {
 };
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+  <RecoilRoot>
     <BrowserRouter>
       <Router />
     </BrowserRouter>
-  </React.StrictMode>,
+  </RecoilRoot>,
 );

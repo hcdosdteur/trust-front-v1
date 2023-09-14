@@ -1,27 +1,19 @@
 import { keyframes, styled } from '#/stitches.config';
 import { useEffect, useState } from 'react';
 import { MainMenu, SubMenu } from '@/component/Navigation';
-import { useNavigate } from 'react-router-dom';
 import TrustImg from '@/assets/icon/trust_in.svg';
 
 const FirstPage: React.FC<{ device: string }> = ({ device }) => {
-  const [isTop, setisTop] = useState<boolean>(true);
-  const [enterMenu, setEnterMenu] = useState<boolean>(false);
-  let navigate = useNavigate();
-
-  const onMouseEnter = () => setEnterMenu(true);
-  const onMouseLeave = () => setEnterMenu(false);
+  const [isTop, setisTop] = useState<boolean>(false);
 
   const onScroll = () => {
-    if (window.scrollY === 0) setisTop(true);
-    else setisTop(false);
-  };
-
-  const onClick = () => {
-    navigate('/login');
+    let scrollTop = window.scrollY;
+    if (scrollTop >= 200) setisTop(false);
+    else setisTop(true);
   };
 
   useEffect(() => {
+    onScroll();
     window.addEventListener('scroll', onScroll);
     return () => {
       window.removeEventListener('scroll', onScroll);
@@ -32,15 +24,12 @@ const FirstPage: React.FC<{ device: string }> = ({ device }) => {
     <MainContainer>
       <Logo>
         <TrustLogo />
-        <Trust onClick={onClick}>TRUST</Trust>
+        <Trust>TRUST</Trust>
       </Logo>
       {device === 'moblie' && <SubMenu />}
       {device === 'pc' && (
-        <MainMenuContainer
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-        >
-          <MainMenu top={isTop && (enterMenu ? true : false)} />
+        <MainMenuContainer>
+          <MainMenu top={isTop} />
         </MainMenuContainer>
       )}
     </MainContainer>
@@ -49,7 +38,7 @@ const FirstPage: React.FC<{ device: string }> = ({ device }) => {
 
 export default FirstPage;
 
-const T_width: number = 20.5;
+const T_width: number = 21.5;
 const slideText1 = keyframes({
   from: { width: 0 },
   to: { width: `${T_width}rem` },
@@ -72,7 +61,7 @@ const MainContainer = styled('div', {
 const MainMenuContainer = styled('div', {
   position: 'absolute',
   bottom: '1rem',
-  minWidth: '35rem',
+  minWidth: '40rem',
   height: '5.5rem',
 });
 
