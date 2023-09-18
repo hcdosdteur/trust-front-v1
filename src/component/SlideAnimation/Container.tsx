@@ -1,4 +1,5 @@
 import { styled } from '#/stitches.config';
+
 import TrustImg from '@/assets/icon/trust_in.svg';
 
 const Container1 = () => {

@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-import { PcMainPage, MobileMainPage } from '@/component/SlideAnimation';
 import ProgressBar from '@/component/ProgressBar';
-import { useEffect, useState } from 'react';
+import { PcMainPage, MobileMainPage } from '@/component/slideAnimation';
 
 export const MainPage = () => {
   const isPc = useMediaQuery({

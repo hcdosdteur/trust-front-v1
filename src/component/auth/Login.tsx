@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAxiosProvider } from '@/context/axios';
 import { styled } from '#/stitches.config';
 
-import Insta from '@/assets/icon/instagram.svg';
 import Github from '@/assets/icon/github.svg';
+import Insta from '@/assets/icon/instagram.svg';
+import { useAxiosProvider } from '@/context/axios';
 
 const Login = () => {
   const Axios = useAxiosProvider();
@@ -78,7 +78,7 @@ const Login = () => {
               backgroundRepeat: 'no-repeat',
             }}
             onClick={() => {
-              let rand: number = Math.floor(Math.random() * 2);
+              const rand: number = Math.floor(Math.random() * 2);
               let url: string = 'https://github.com/';
               rand === 0
                 ? (url = 'https://github.com/hcdosdteur/')
@@ -88,7 +88,7 @@ const Login = () => {
           />
         </LinkCir>
         <GotoSignup>
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <StyledLink to="/register">Register</StyledLink>
         </GotoSignup>
       </LoginContainer>

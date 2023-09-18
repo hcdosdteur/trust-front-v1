@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { styled, keyframes } from '#/stitches.config';
 import { Link } from 'react-router-dom';
 
+import { styled, keyframes } from '#/stitches.config';
+
 import { ReactComponent as Home } from '@/assets/icon/home.svg';
+
 
 export const MainMenu: React.FC<{ top: boolean }> = ({ top }) => {
   return (

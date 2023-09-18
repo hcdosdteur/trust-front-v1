@@ -2,6 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import getEnvVars from '#/environment';
+
 import { User, userAtom } from '@/utils/atom';
 import { Type } from '@/utils/types';
 

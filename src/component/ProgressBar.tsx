@@ -1,15 +1,17 @@
 import { useEffect, useRef } from 'react';
+
 import { styled } from '@stitches/react';
+
 import { keyframes } from '#/stitches.config';
 
 const ProgressBar = () => {
   const bar = useRef<HTMLDivElement>(null);
 
   const scroll = () => {
-    let winScroll = window.scrollY;
+    const winScroll = window.scrollY;
     let scrolled: number = 0;
 
-    let height = document.body.clientHeight * (5 / 6);
+    const height = document.body.clientHeight * (5 / 6);
     scrolled = (winScroll / height) * 100;
 
     if (bar.current !== null) bar.current.style.width = `${scrolled}%`;

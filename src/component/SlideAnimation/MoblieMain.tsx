@@ -1,6 +1,7 @@
-import { RefObject, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
 import { styled } from '#/stitches.config';
+
 import FirstPage from '@/component/FirstPage';
 import {
   Container1,
@@ -8,7 +9,7 @@ import {
   Container3,
   Container4,
   Container5,
-} from '@/component/SlideAnimation';
+} from '@/component/slideAnimation';
 
 export const MobileMainPage = () => {
   const [upbtn, setUpbtn] = useState<boolean>(false);

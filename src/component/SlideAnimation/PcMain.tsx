@@ -1,5 +1,10 @@
+import type { elementType, defObj } from '@/utils/types';
+
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+
 import { styled, keyframes } from '#/stitches.config';
+
+import arrow from '@/assets/icon/arrow.svg';
 import FirstPage from '@/component/FirstPage';
 import {
   Container1,
@@ -7,12 +12,8 @@ import {
   Container3,
   Container4,
   Container5,
-} from '@/component/SlideAnimation';
-
-import { def } from '@/component/SlideAnimation/Def';
-import { elementType, defObj } from '@/types/scrollAnimation';
-import arrow from '@/assets/icon/arrow.svg';
-import { useLocation } from 'react-router-dom';
+} from '@/component/slideAnimation';
+import { def } from '@/component/slideAnimation/Def';
 
 export const PcMainPage = () => {
   const enabled = new Map();
@@ -47,19 +48,24 @@ export const PcMainPage = () => {
 
   const applyStyle = (
     element: HTMLDivElement | null,
-    styleName: any,
+    styleName: string,
     value: number,
   ) => {
     if (element) {
-      if (styleName === 'translateY') {
+      if (styleName.toString() === 'translateY') {
         element.style.transform = `translateY(${value / 10}rem)`;
         return;
       }
-      element.style[styleName] = `${value}`;
+      element.style[styleName as unknown as number] = `${value}`;
     }
   };
 
-  const applyStyles = (id: string, styles: any[], rate: number) => {
+  interface Styles {
+    name: string;
+    topValue: number;
+    bottomValue: number;
+  }
+  const applyStyles = (id: string, styles: Styles[], rate: number) => {
     styles.forEach((style) => {
       const { name, topValue, bottomValue } = style;
       const value = getPoint(topValue, bottomValue, rate);

@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+import ReactDOM from 'react-dom/client';
+import { RecoilRoot } from 'recoil';
+
 import { globalCss } from '#/stitches.config';
-import Main from '@/pages/main';
+
 import Login from '@/component/auth/Login';
 import Signup from '@/component/auth/Signup';
-
-import { RecoilRoot } from 'recoil';
+import Main from '@/pages/main';
 
 import '@/assets/fonts/index.css';
 

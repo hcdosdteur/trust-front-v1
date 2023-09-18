@@ -1,13 +1,15 @@
-import { keyframes, styled } from '#/stitches.config';
 import { useEffect, useState } from 'react';
-import { MainMenu, SubMenu } from '@/component/Navigation';
+
+import { keyframes, styled } from '#/stitches.config';
+
 import TrustImg from '@/assets/icon/trust_in.svg';
+import { MainMenu, SubMenu } from '@/component/navigation';
 
 const FirstPage: React.FC<{ device: string }> = ({ device }) => {
   const [isTop, setisTop] = useState<boolean>(false);
 
   const onScroll = () => {
-    let scrollTop = window.scrollY;
+    const scrollTop = window.scrollY;
     if (scrollTop >= 200) setisTop(false);
     else setisTop(true);
   };

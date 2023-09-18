@@ -1,4 +1,3 @@
-import { defObj } from '@/types/scrollAnimation';
 import bezierEasing from 'bezier-easing';
 
 const ease = bezierEasing(0.25, 0.1, 0.25, 1.0);

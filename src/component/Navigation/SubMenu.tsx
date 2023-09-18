@@ -1,5 +1,6 @@
-import { styled } from '#/stitches.config';
 import { NavLink as RRNavLink } from 'react-router-dom';
+
+import { styled } from '#/stitches.config';
 
 export const SubMenu = () => {
   return (

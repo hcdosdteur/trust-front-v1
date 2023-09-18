@@ -1,42 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import { styled } from '#/stitches.config';
 
-import { RadioContext } from '@/context/element';
-import { useContext } from 'react';
+import { RadioProps, RadioContext } from '@/context/element';
 
-type RadioGroupProps = {
-  label?: string;
-  children: React.ReactNode | React.ReactNode[];
-} & React.InputHTMLAttributes<HTMLFieldSetElement>;
-interface RadioProps {
-  value: string;
+interface RadioGroupProps {
   name: string;
-  defaultChecked?: boolean;
-  disabled?: boolean;
+  label?: string;
   children: React.ReactNode | React.ReactNode[];
 }
 
-const RadioGroup: React.FC<RadioGroupProps> = ({
-  label,
-  children,
-  ...rest
-}) => {
+const RadioGroup: React.FC<RadioGroupProps> = ({ name, label, children }) => {
+  const [checked, setChecked] = React.useState<string | undefined>(undefined);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setChecked(value);
+  };
+
   return (
     <Fieldset>
-      {/* <legend>{label}</legend> */}
-      <RadioContext.Provider value={rest}>{children}</RadioContext.Provider>
+      {label && <legend>{label}</legend>}
+      <RadioContext.Provider
+        value={{ name, defaultChecked, onChange, disabled }}
+      >
+        {children}
+      </RadioContext.Provider>
     </Fieldset>
   );
 };
 
-const Radio: React.FC<RadioProps> = ({
-  children,
-  value,
-  name,
-  defaultChecked,
-  disabled,
-}) => {
-  const group = useContext(RadioContext);
+const Radio: React.FC<RadioProps> = ({ value, children }) => {
+  const { name, onChange, defaultChecked, disabled } = useContext(RadioContext);
   return (
     <Label>
       <input
@@ -44,6 +39,7 @@ const Radio: React.FC<RadioProps> = ({
         value={value}
         name={name}
         defaultChecked={defaultChecked}
+        onChange={onChange}
         disabled={disabled}
       />
       {children}

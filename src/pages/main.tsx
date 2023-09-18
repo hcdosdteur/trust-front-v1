@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import { styled } from '#/stitches.config';
-import { NavigatedComponent } from '@/component/Navigation/Navigation';
-import { SubMenu } from '@/component/Navigation';
+
+import { SubMenu } from '@/component/navigation';
+import { NavigatedComponent } from '@/component/navigation/Navigation';
 
 const Main = () => {
   const [path, setPath] = useState<string>('/');

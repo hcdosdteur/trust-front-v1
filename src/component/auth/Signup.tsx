@@ -1,10 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { styled } from '#/stitches.config';
 
-import { useAxiosProvider } from '@/context/axios';
-import { RadioGroup, Radio } from '@/component/radio';
 import TrustImg from '@/assets/icon/trust_in.svg';
+import { RadioGroup, Radio } from '@/component/radio';
+import { useAxiosProvider } from '@/context/axios';
 import { Type } from '@/utils/types';
 
 interface confirmInput {

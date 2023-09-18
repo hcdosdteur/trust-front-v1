@@ -1,6 +1,7 @@
-import { Assignment, Awards, MainPage, Member } from '@/pages/router';
 import React from 'react';
-import { Loading } from '@/component/Loading/Loading';
+
+import { Loading } from '@/component/loading/Loading';
+import { Assignment, Awards, MainPage, Member } from '@/pages/router';
 
 interface ComponentItem {
   [key: string]: Array<{ Component: React.FC }>;

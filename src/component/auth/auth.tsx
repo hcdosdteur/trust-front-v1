@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { LoadableComponent } from '@loadable/component';
 import { Navigate } from 'react-router-dom';
+
+import { LoadableComponent } from '@loadable/component';
+
 import { styled } from '#/stitches.config';
 
 enum UserType {

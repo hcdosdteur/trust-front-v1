@@ -6,13 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "@loadable/component": "^5.15.3",
     "@stitches/react": "^1.2.8",
     "@types/axios": "^0.14.0",
     "bezier-easing": "^2.1.0",
+    "eslint": "^8.49.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive": "^9.0.2",
@@ -26,7 +29,13 @@
     "@types/node": "^18.15.7",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "^6.7.0",
     "@vitejs/plugin-react": "^3.1.0",
+    "eslint-import-resolver-typescript": "^3.6.0",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest",
     "sass": "^1.60.0",
     "typescript": "^4.9.3",
     "vite": "^4.2.0"
