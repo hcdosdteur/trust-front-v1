@@ -9,7 +9,6 @@ enum UserType {
   A = 'A',
   U = 'U',
 }
-
 interface User {
   userType: UserType;
 }
@@ -28,7 +27,7 @@ const Main = styled('div', {
 });
 
 const Box: React.FC<{
-  Children: LoadableComponent<{}>;
+  Children: LoadableComponent<unknown>;
 }> = ({ Children }) => {
   return (
     <Container>
@@ -43,15 +42,15 @@ export const BranchRouting = ({
   screens: { Admin, User },
 }: {
   screens: {
-    Admin: LoadableComponent<{}>;
-    User: LoadableComponent<{}>;
+    Admin: LoadableComponent<unknown>;
+    User: LoadableComponent<unknown>;
   };
 }): JSX.Element => {
   const [myData, setMyData] = useState<User | null>();
   // need User Type
   useEffect(() => {}, []);
 
-  if (myData === null) return <Navigate to="/login" />;
+  if (myData === null) return <Navigate to="/" />;
   if (myData?.userType === UserType.A) return <Box Children={Admin} />;
   if (myData?.userType === UserType.U) return <Box Children={User} />;
   return <></>;
