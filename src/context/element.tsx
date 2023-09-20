@@ -1,18 +1,26 @@
-import { createContext } from 'react';
+import type { Type } from '@/utils/types';
 
-export interface RadioProps {
-  value: string;
+import { createContext, useContext } from 'react';
+
+export interface RadioContextProps {
   name: string;
-  defaultChecked?: boolean;
-  disabled?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  defaultValue: Type;
+  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
   children: React.ReactNode | React.ReactNode[];
 }
-export const RadioContext = createContext<RadioProps>({
-  value: '',
+export const RadioContext = createContext<RadioContextProps>({
   name: '',
-  defaultChecked: false,
-  disabled: false,
+  defaultValue: 'web',
   onChange() {},
   children: null,
 });
+
+export const useRadioContext = () => {
+  const context = useContext(RadioContext);
+  if (!context) {
+    throw new Error(
+      'Radio compound components cannot be rendered outside the Radio component',
+    );
+  }
+  return context;
+};

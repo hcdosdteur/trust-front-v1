@@ -1,61 +1,63 @@
-import axios, { AxiosError } from 'axios';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import type { User } from '@/utils/atom';
+import type { Type } from '@/utils/types';
 
-import getEnvVars from '#/environment';
+import { useNavigate } from 'react-router-dom';
 
-import { User, userAtom } from '@/utils/atom';
-import { Type } from '@/utils/types';
+import { useSetRecoilState, useResetRecoilState } from 'recoil';
 
-const { apiUrl } = getEnvVars();
+import { postData } from '@/component/api';
+import { userAtom } from '@/utils/atom';
+import * as atoms from '@/utils/atom';
 
-export { useAxiosProvider };
+export { useAxiosAuth };
 
-interface LoginProps {
-  (username: string, password: string): void;
-}
-interface RegisterProps {
-  (username: string, password: string, name: string, type: Type): void;
-}
+type Login = (userInfo: {
+  username: string;
+  password: string;
+}) => Promise<void>;
+type Register = (newuser: {
+  username: string;
+  password: string;
+  name: string;
+  type: Type;
+}) => Promise<void>;
 
-const useAxiosProvider = () => {
+const useAxiosAuth = () => {
+  const navigate = useNavigate();
   const setAuth = useSetRecoilState(userAtom);
 
-  const publicAxios = axios.create({
-    baseURL: apiUrl,
-    timeout: 5000,
-  });
-
-  const register: RegisterProps = async (username, password, name, type) => {
-    await publicAxios
-      .post('/auth/register', { username, password, name, type })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err: AxiosError) => {
-        console.log('Register Error: ' + err.response?.data.message);
-      });
+  const register: Register = async (newUser) => {
+    try {
+      await postData('/auth/register', newUser);
+      alert('가입이 완료되었습니다.\n로그인 페이지로 이동합니다.');
+      navigate('/login');
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(err.message);
+      }
+    }
   };
 
-  const login: LoginProps = async (username, password) => {
-    await publicAxios
-      .post('/auth/login', { username, password })
-      .then((res) => {
-        console.log(res);
-        // localStorage.setItem('token', res.data.token);
-        // setAuth(res as User);
-      })
-      .catch((err: AxiosError) => {
-        console.log('Login Error: ' + err);
-      });
+  const login: Login = async (userInfo) => {
+    try {
+      const res = await postData<User>('/auth/login', userInfo);
+      console.log(res.data.accessToken);
+      setAuth(res.data);
+      navigate('/');
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(err.message);
+      }
+    }
   };
 
-  // const logout = () => {
-  //   localStorage.removeItem('token');
-  //   setAuth(null);
-  // };
+  const logout = () => {
+    useResetRecoilState(atoms.userAtom);
+  };
 
   return {
     login,
     register,
+    logout,
   };
 };

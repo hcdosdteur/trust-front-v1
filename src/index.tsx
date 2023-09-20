@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil';
 
 import { globalCss } from '#/stitches.config';
 
+import { BranchRouting } from '@/component/auth/auth';
 import Login from '@/component/auth/Login';
 import Signup from '@/component/auth/Signup';
 import Main from '@/pages/main';

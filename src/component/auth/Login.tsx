@@ -5,18 +5,22 @@ import { styled } from '#/stitches.config';
 
 import Github from '@/assets/icon/github.svg';
 import Insta from '@/assets/icon/instagram.svg';
-import { useAxiosProvider } from '@/context/axios';
+import { useAxiosAuth } from '@/context/axios';
 
 const Login = () => {
-  const Axios = useAxiosProvider();
+  const Axios = useAxiosAuth();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
 
-  const login = () => {
+  const login = async () => {
     setLoading(true);
-    Axios.login(id, pw);
+    const userInfo = {
+      username: id,
+      password: pw,
+    };
+    await Axios.login(userInfo);
     setLoading(false);
   };
 
@@ -33,6 +37,7 @@ const Login = () => {
                 onChange={(e) => {
                   setId(e.target.value);
                 }}
+                autoComplete="off"
                 required
               />
               <Label>User Id</Label>
@@ -44,6 +49,7 @@ const Login = () => {
                 onChange={(e) => {
                   setPw(e.target.value);
                 }}
+                autoComplete="off"
                 required
               />
               <Label>Password</Label>

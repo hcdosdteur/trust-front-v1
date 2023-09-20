@@ -1,12 +1,12 @@
+import type { Type } from '@/utils/types';
+
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { styled } from '#/stitches.config';
 
-import TrustImg from '@/assets/icon/trust_in.svg';
 import { RadioGroup, Radio } from '@/component/radio';
-import { useAxiosProvider } from '@/context/axios';
-import { Type } from '@/utils/types';
+import { useAxiosAuth } from '@/context/axios';
 
 interface confirmInput {
   id: string;
@@ -18,8 +18,7 @@ interface confirmInput {
 }
 
 const Signup = () => {
-  const Axios = useAxiosProvider();
-  const [loading, setLoading] = useState<boolean>(false);
+  const Axios = useAxiosAuth();
   const [input, setInput] = useState<confirmInput>({
     id: '',
     password: '',
@@ -29,17 +28,19 @@ const Signup = () => {
     type: 'web',
   });
   const [pass, setPass] = useState<boolean>(true);
-  const navigate = useNavigate();
 
-  const createAccount = () => {
+  const createAccount = async () => {
     if (
       input.password !== '' &&
       input.confirmPassword !== '' &&
       input.id !== '' &&
       input.fstName !== '' &&
-      input.lstName !== '' &&
-      validateInput()
+      input.lstName !== ''
     ) {
+      if (!validateInput()) {
+        alert('비밀번호가 일치하지 않습니다.');
+        return;
+      }
       console.log(
         input.fstName,
         input.lstName,
@@ -47,14 +48,13 @@ const Signup = () => {
         input.password,
         input.type,
       );
-      Axios.register(
-        input.id,
-        input.password,
-        `${input.fstName} ${input.lstName}`,
-        input.type,
-      );
-      // alert('가입이 완료되었습니다.\n로그인 페이지로 이동합니다.');
-      // navigate('/login');
+      const newUser = {
+        username: input.id,
+        password: input.password,
+        name: `${input.fstName}-${input.lstName}`,
+        type: input.type,
+      };
+      await Axios.register(newUser);
     } else alert('입력하지 않은 값이 존재합니다.');
   };
 
@@ -68,12 +68,13 @@ const Signup = () => {
   };
 
   const validateInput = () => {
-    if (input.password === input.confirmPassword) setPass(true);
-    else {
+    if (input.password === input.confirmPassword) {
+      setPass(true);
+      return true;
+    } else {
       setPass(false);
       return false;
     }
-    return true;
   };
 
   useEffect(() => {
@@ -117,6 +118,7 @@ const Signup = () => {
                 defaultValue={input.id}
                 onChange={onInputChange}
                 pass={true}
+                autoComplete="off"
                 required
               />
               <Label>User Id</Label>
@@ -128,6 +130,7 @@ const Signup = () => {
                 defaultValue={input.password}
                 onChange={onInputChange}
                 pass={pass ? true : false}
+                autoComplete="off"
                 required
               />
               <Label pass={pass ? true : false}>Password</Label>
@@ -139,27 +142,21 @@ const Signup = () => {
                 value={input.confirmPassword}
                 onChange={onInputChange}
                 pass={pass ? true : false}
+                autoComplete="off"
                 required
               />
               <Label pass={pass ? true : false}>Confirm Password</Label>
             </Data>
             <Data>
               <RadioGroup
+                name="type"
                 defaultValue={input.type}
-                onChange={() => onInputChange}
+                onChange={onInputChange}
               >
-                <Radio name="type" value="web" defaultChecked>
-                  web
-                </Radio>
-                <Radio name="type" value="pwn">
-                  pwn
-                </Radio>
-                <Radio name="type" value="rev">
-                  rev
-                </Radio>
-                <Radio name="type" value="crypto">
-                  crypto
-                </Radio>
+                <Radio value="web">web</Radio>
+                <Radio value="pwn">pwn</Radio>
+                <Radio value="rev">rev</Radio>
+                <Radio value="crypto">crypto</Radio>
               </RadioGroup>
             </Data>
           </UserDataSub>

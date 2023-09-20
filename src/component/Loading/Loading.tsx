@@ -27,6 +27,7 @@ const Waviy = styled('div', {
   height: '100vh',
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor: 'rgba(0, 0, 0, .5)',
   zIndex: 100,
   userSelect: 'none',
 });
