@@ -7,13 +7,11 @@ const { persistAtom } = recoilPersist({
 
 export interface User {
   accessToken: string;
-  authenicated: boolean;
 }
 export const userAtom = atom<User>({
   key: 'userAtom',
   default: {
     accessToken: '',
-    authenicated: false,
   },
   effects_UNSTABLE: [persistAtom],
 });

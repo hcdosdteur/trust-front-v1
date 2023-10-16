@@ -1,6 +1,6 @@
 import { NavLink as RRNavLink } from 'react-router-dom';
 
-import { styled } from '#/stitches.config';
+import { keyframes, styled } from '#/stitches.config';
 
 export const SubMenu = () => {
   return (
@@ -21,16 +21,28 @@ export const SubMenu = () => {
   );
 };
 
+const show = keyframes({
+  '0%': { opacity: 0 },
+  '100%': { opacity: 1 },
+});
+
 const Wrapper = styled('div', {
   display: 'flex',
   position: 'fixed',
   width: '100%',
-  top: '4.5rem',
+  paddingTop: '4.5rem',
+  paddingBottom: '3.5rem',
+  boxShadow: '0 0 2rem 2rem #000',
+  top: 0,
   justifyContent: 'center',
   backgroundColor: '#000',
   textAlign: 'center',
   gap: '9rem',
   zIndex: 999,
+  div: {
+    transition: 'all ease-in-out',
+    animation: `${show} .5s`,
+  },
 });
 
 const NavLink = styled(RRNavLink, {

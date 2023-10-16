@@ -1,57 +1,70 @@
-import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import type { UserType } from '@/utils/types';
+
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { LoadableComponent } from '@loadable/component';
 
-import { styled } from '#/stitches.config';
+import { getUserData } from '@/api/user';
+import { SubMenu } from '@/component/navigation';
+import { Wrapper } from '@/pages/main';
 
-enum UserType {
-  A = 'A',
-  U = 'U',
-}
-interface User {
-  userType: UserType;
-}
-
-const Container = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  position: 'relative',
-  width: '100vw',
-  height: '100vh',
-});
-const Main = styled('div', {
-  display: 'flex',
-  position: 'relative',
-  width: 'calc(100% - 20rem)',
-});
-
-const Box: React.FC<{
-  Children: LoadableComponent<unknown>;
-}> = ({ Children }) => {
+const Box: React.FC<{ Children: LoadableComponent<unknown> }> = ({
+  Children,
+}) => {
   return (
-    <Container>
-      <Main>
-        <Children />
-      </Main>
-    </Container>
+    <Wrapper>
+      <SubMenu />
+      <Children />
+    </Wrapper>
   );
 };
 
-export const BranchRouting = ({
-  screens: { Admin, User },
+export const NeedAuth = ({
+  element: { Admin, User },
 }: {
-  screens: {
+  element: {
     Admin: LoadableComponent<unknown>;
     User: LoadableComponent<unknown>;
   };
-}): JSX.Element => {
-  const [myData, setMyData] = useState<User | null>();
-  // need User Type
-  useEffect(() => {}, []);
+}) => {
+  const [myRole, setMyRole] = useState<UserType | null>(null);
+  const userData = getUserData();
+  const navigate = useNavigate();
+  // console.log(userData);
 
-  if (myData === null) return <Navigate to="/" />;
-  if (myData?.userType === UserType.A) return <Box Children={Admin} />;
-  if (myData?.userType === UserType.U) return <Box Children={User} />;
-  return <></>;
+  useEffect(() => {
+    if (userData instanceof Error) {
+      console.log(userData.message);
+      alert(userData.message);
+      navigate('/login');
+    } else {
+      setMyRole(userData.role);
+    }
+  }, []);
+
+  return (
+    <>
+      {myRole === 'A' && <Box Children={Admin} />}
+      {myRole === 'U' && <Box Children={User} />}
+    </>
+  );
 };
+
+// export const BranchRouting = ({
+//   screens: { Admin, User },
+// }: {
+//   screens: {
+//     Admin: LoadableComponent<unknown>;
+//     User: LoadableComponent<unknown>;
+//   };
+// }): JSX.Element => {
+//   const [myData, setMyData] = useState<User | null>();
+//   // need User Type
+//   useEffect(() => {}, []);
+
+//   if (myData === null) return <Navigate to="/" />;
+//   if (myData?.userType === UserType.A) return <Box Children={Admin} />;
+//   if (myData?.userType === UserType.U) return <Box Children={User} />;
+//   return <></>;
+// };

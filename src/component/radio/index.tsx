@@ -36,19 +36,30 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   );
 };
 
-const Radio: React.FC<RadioProps> = ({ value, children, disabled }) => {
+const Radio: React.FC<RadioProps> = ({ value, disabled, children }) => {
   const { name, defaultValue, onChange } = useRadioContext();
+
+  const isChecked = () => defaultValue === value;
+
   return (
     <Label>
-      <input
+      <Input
         type="radio"
         value={value}
         name={name}
-        defaultChecked={defaultValue === value}
+        defaultChecked={isChecked()}
         onChange={onChange}
         disabled={disabled}
       />
-      {children}
+      <Span
+        css={{
+          borderColor: isChecked() ? `$${value}` : '$main',
+          opacity: isChecked() ? '1' : '0.8',
+          transform: isChecked() ? 'scale(1.05)' : 'scale(1)',
+        }}
+      >
+        {children}
+      </Span>
     </Label>
   );
 };
@@ -60,8 +71,8 @@ const Fieldset = styled('fieldset', {
   justifyContent: 'space-between',
   border: 'none',
   margin: '0',
-  padding: '0 15px',
-  paddingTop: '3px',
+  // padding: '0 15px',
+  // paddingTop: '3px',
   gap: '10px',
 });
 
@@ -70,7 +81,23 @@ const Label = styled('label', {
   textTransform: 'uppercase',
   display: 'flex',
   gap: '8px',
+  padding: '0',
+  userSelect: 'none',
   input: {
     margin: '0',
+  },
+});
+
+const Input = styled('input', {
+  display: 'none',
+});
+
+const Span = styled('span', {
+  border: '2px solid',
+  borderRadius: '6px',
+  padding: '6px 12px',
+  transition: 'all 0.2s ease-in-out',
+  '&:hover': {
+    opacity: '1',
   },
 });

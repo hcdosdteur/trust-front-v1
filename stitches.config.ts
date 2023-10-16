@@ -3,6 +3,10 @@ import { createStitches } from '@stitches/react';
 export const COLORS = {
   main: '#C2D7E4',
   grade1: '#616C72',
+  web: '#4785e9',
+  pwn: '#9936c2',
+  rev: '#43dbe9',
+  crypto: '#e4e95a',
   incorrect: '#af6868',
 };
 

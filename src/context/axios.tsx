@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSetRecoilState, useResetRecoilState } from 'recoil';
 
-import { postData } from '@/component/api';
+import { postData } from '@/api';
 import { userAtom } from '@/utils/atom';
 import * as atoms from '@/utils/atom';
 
@@ -50,6 +50,10 @@ const useAxiosAuth = () => {
       }
     }
   };
+
+  // headers: {
+  //   Authorization: `Bearer ${}`,
+  // }
 
   const logout = () => {
     useResetRecoilState(atoms.userAtom);

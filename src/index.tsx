@@ -5,9 +5,8 @@ import { RecoilRoot } from 'recoil';
 
 import { globalCss } from '#/stitches.config';
 
-import { BranchRouting } from '@/component/auth/auth';
-import Signup from '@/component/auth/Signup';
-import { Main, Login } from '@/pages/index';
+import { Signup, NeedAuth } from '@/component/auth';
+import { Main, Login, Assignment } from '@/pages';
 
 import '@/assets/fonts/index.css';
 
@@ -56,11 +55,11 @@ const Router = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Signup />} />
-      <Route path="/awards" element={<BranchRouting screens={Main} />} />
-      <Route path="/loading" element={<BranchRouting screens={Main} />} />
-      <Route path="/member" element={<BranchRouting screens={Main} />} />
-      <Route path="/assignment" element={<BranchRouting screens={Main} />} />
-      <Route path="/" element={<BranchRouting screens={Main} />} />
+      <Route path="/awards" element={<Main />} />
+      <Route path="/loading" element={<Main />} />
+      <Route path="/member" element={<Main />} />
+      <Route path="/assignment" element={<NeedAuth element={Assignment} />} />
+      <Route path="/" element={<Main />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

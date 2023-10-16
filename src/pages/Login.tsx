@@ -5,6 +5,7 @@ import { styled } from '#/stitches.config';
 
 import Github from '@/assets/icon/github.svg';
 import Insta from '@/assets/icon/instagram.svg';
+import { ReactComponent as Loading } from '@/assets/icon/loading.svg';
 import { useAxiosAuth } from '@/context/axios';
 
 const Login = () => {
@@ -15,6 +16,7 @@ const Login = () => {
   const [pw, setPw] = useState<string>('');
 
   const login = async () => {
+    if (id === '' || pw === '') return alert('입력하지 않은 값이 존재합니다.');
     setLoading(true);
     const userInfo = {
       username: id,
@@ -63,7 +65,7 @@ const Login = () => {
             </Data>
           </UserDataSub>
           <LoginBtn onClick={login}>
-            <span>Login</span>
+            {loading ? <Loading width="30px" /> : <span>Login</span>}
           </LoginBtn>
         </UserData>
         <LinkCir>

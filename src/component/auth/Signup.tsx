@@ -17,7 +17,7 @@ interface confirmInput {
   type: Type;
 }
 
-const Signup = () => {
+export const Signup = () => {
   const Axios = useAxiosAuth();
   const [input, setInput] = useState<confirmInput>({
     id: '',
@@ -171,8 +171,6 @@ const Signup = () => {
     </Wrapper>
   );
 };
-
-export default Signup;
 
 const Wrapper = styled('div', {
   display: 'flex',

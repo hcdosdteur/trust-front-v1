@@ -13,7 +13,7 @@ export const MainPage = () => {
   });
 
   useEffect(() => {
-    console.log(isPc, isMobile);
+    // console.log(isPc, isMobile);
   }, []);
 
   return (

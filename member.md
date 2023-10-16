@@ -15,16 +15,19 @@ Kim-Dohyeon
 
 **`조현재`**
 web
-Cho Hyeon-jae
+Cho-Hyeonjae
 21HD, whguswo
 
 **`백현서`**
+Baek-HyeonSeo
 crypto
 
 **`이예일`**
+Lee-Yeil
 web
 Lee
 
 **`김지호`**
+Kim-Jiho
 pwn
 Kim

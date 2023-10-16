@@ -2,6 +2,8 @@ import { RefObject } from 'react';
 
 export type Type = 'web' | 'pwn' | 'rev' | 'crypto';
 
+export type UserType = 'A' | 'U';
+
 export interface elementType {
   [key: string]: RefObject<HTMLDivElement>;
 }

@@ -28,7 +28,7 @@ const Main = () => {
 
 export default Main;
 
-const Wrapper = styled('div', {
+export const Wrapper = styled('div', {
   position: 'relative',
   variants: {
     state: {
