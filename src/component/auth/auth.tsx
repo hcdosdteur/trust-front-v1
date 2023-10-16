@@ -36,8 +36,11 @@ export const NeedAuth = ({
   useEffect(() => {
     if (userData instanceof Error) {
       console.log(userData.message);
-      alert(userData.message);
-      navigate('/login');
+      const ans = confirm(
+        'ERROR : ' + userData.message + '\n로그인 페이지로 이동합니다.',
+      );
+      if (ans) navigate('/login');
+      else navigate(-1);
     } else {
       setMyRole(userData.role);
     }
