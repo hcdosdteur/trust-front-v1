@@ -51,5 +51,5 @@ const Progress = styled('div', {
 
 const Bar = styled('div', {
   height: bar_h,
-  backgroundColor: '#fff',
+  backgroundColor: '$main',
 });

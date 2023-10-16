@@ -52,4 +52,5 @@ const Container = styled('div', {
   height: 'fit-content',
   gap: '3rem',
   borderRadius: '.5rem',
+  userSelect: 'none',
 });
