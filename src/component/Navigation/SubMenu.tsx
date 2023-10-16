@@ -31,7 +31,7 @@ const Wrapper = styled('div', {
   position: 'fixed',
   width: '100%',
   paddingTop: '4.5rem',
-  paddingBottom: '3.5rem',
+  paddingBottom: '3rem',
   boxShadow: '0 0 2rem 2rem #000',
   top: 0,
   justifyContent: 'center',
@@ -47,7 +47,6 @@ const Wrapper = styled('div', {
 
 const NavLink = styled(RRNavLink, {
   fontSize: '2rem',
-  fontWeight: 600,
   opacity: 0.5,
   cursor: 'pointer',
   transition: '.1s ease-out',

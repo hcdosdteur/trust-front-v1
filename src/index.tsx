@@ -20,7 +20,8 @@ globalCss({
     fontSize: '1.6rem',
     boxSizing: 'border-box',
     color: '$main',
-    fontWeight: 600,
+    fontWeight: 700,
+    lineHeight: 1.5,
     letterSpacing: '-0.02em',
   },
   '*::-webkit-scrollbar': {
