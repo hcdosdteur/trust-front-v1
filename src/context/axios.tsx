@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSetRecoilState, useResetRecoilState } from 'recoil';
 
-import { postData } from '@/api';
+import { getData, postData } from '@/api';
 import { userAtom } from '@/utils/atom';
 import * as atoms from '@/utils/atom';
 
-export { useAxiosAuth };
+export { useAxiosAuth, useAxios };
 
 type Login = (userInfo: {
   username: string;
@@ -63,5 +63,26 @@ const useAxiosAuth = () => {
     login,
     register,
     logout,
+  };
+};
+
+const useAxios = () => {
+  const getMember = async () => {
+    try {
+      const res = await getData('/auth/member', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        }, // 이거 없어도 되야함
+      });
+      console.log(res.data);
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(err.message);
+      }
+    }
+  };
+
+  return {
+    getMember,
   };
 };

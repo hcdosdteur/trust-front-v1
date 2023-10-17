@@ -18,7 +18,7 @@ interface UserData {
 export const getUserData = (): UserData | Error => {
   let token: UserData;
   if (getAccessToken() === 'null') {
-    return new Error('No access token');
+    return new Error('Invalid access token');
   }
   try {
     token = jwt_decode(getAccessToken()) as UserData;

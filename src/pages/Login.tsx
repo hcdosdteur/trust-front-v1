@@ -18,6 +18,7 @@ const Login = () => {
   const login = async () => {
     if (id === '' || pw === '') return alert('입력하지 않은 값이 존재합니다.');
     setLoading(true);
+
     const userInfo = {
       username: id,
       password: pw,

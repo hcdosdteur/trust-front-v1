@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 import { styled } from '#/stitches.config';
 
+import { isMobile } from '@/utils/mediaQuery';
+
 interface CardProps {
   Img: React.FunctionComponent<React.SVGProps<SVGSVGElement>> | string;
   name: string;
@@ -17,8 +19,10 @@ export const Card: React.FC<CardProps> = ({ Img, name, type, hashtag }) => {
     y: 0,
   });
   const [bounds, setBounds] = useState<DOMRect | undefined>();
+  const mobile = isMobile();
 
   const rotateToMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (mobile) return;
     const mouseX = mousePos.x;
     const mouseY = mousePos.y;
     if (!bounds) return;

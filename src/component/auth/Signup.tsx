@@ -48,10 +48,17 @@ export const Signup = () => {
         input.password,
         input.type,
       );
+
+      const upperName = (v: string) => {
+        const name = v.toLowerCase();
+        return name.charAt(0).toUpperCase() + name.slice(1);
+      };
+      const rename = `${upperName(input.fstName)}-${upperName(input.lstName)}`;
+
       const newUser = {
         username: input.id,
         password: input.password,
-        name: `${input.fstName}-${input.lstName}`,
+        name: rename,
         type: input.type,
       };
       await Axios.register(newUser);
