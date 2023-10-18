@@ -81,3 +81,20 @@ export const deleteData = async <T>(
     }
   }
 };
+
+export const patchData = async <T>(
+  url: string,
+  data?: unknown,
+  config?: AxiosRequestConfig,
+): Promise<AxiosResponse<T>> => {
+  try {
+    const response = await publicAxios.patch(url, data, config);
+    return response.data;
+  } catch (err) {
+    if (isAxiosError<ResponseDataType>(err)) {
+      throw new Error(err.response?.data.message);
+    } else {
+      throw new Error('Unknown Error');
+    }
+  }
+};

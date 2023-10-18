@@ -17,7 +17,7 @@ export const Member = () => {
         />
         <Card
           Img={gyeongmin}
-          name="Baek-HyeonSeo"
+          name="Kim-Gyeongmin"
           type="rev"
           hashtag={['KDMHS', '21HD']}
         />
