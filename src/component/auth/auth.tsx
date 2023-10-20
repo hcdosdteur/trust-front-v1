@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { LoadableComponent } from '@loadable/component';
 
-import { getUserData } from '@/api/user';
+import { getMyData } from '@/api/user';
 import { SubMenu } from '@/component/navigation';
 import { Wrapper } from '@/pages/main';
 
@@ -29,7 +29,7 @@ export const NeedAuth = ({
   };
 }) => {
   const [myRole, setMyRole] = useState<UserType | null>(null);
-  const userData = getUserData();
+  const userData = getMyData();
   const navigate = useNavigate();
   // console.log(userData);
 

@@ -6,6 +6,7 @@ import { RecoilRoot } from 'recoil';
 import { globalCss } from '#/stitches.config';
 
 import { Signup, NeedAuth } from '@/component/auth';
+import { ApiProvider } from '@/context/api';
 import { Main, Login, Assignment } from '@/pages';
 
 import '@/assets/fonts/index.css';
@@ -69,7 +70,9 @@ const Router = () => {
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <RecoilRoot>
     <BrowserRouter>
-      <Router />
+      <ApiProvider>
+        <Router />
+      </ApiProvider>
     </BrowserRouter>
   </RecoilRoot>,
 );

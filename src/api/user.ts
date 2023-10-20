@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 
 import { getAccessToken } from '@/api/auth';
 
-interface UserData {
+interface MyData {
   _id: string;
   iat: number;
   exp: number;
@@ -15,13 +15,13 @@ interface UserData {
   username: string;
 }
 
-export const getUserData = (): UserData | Error => {
-  let token: UserData;
+export const getMyData = (): MyData | Error => {
+  let token: MyData;
   if (getAccessToken() === 'null') {
     return new Error('Invalid access token');
   }
   try {
-    token = jwt_decode(getAccessToken()) as UserData;
+    token = jwt_decode(getAccessToken()) as MyData;
     return token;
   } catch (error) {
     return new Error('Invalid jwt token format');

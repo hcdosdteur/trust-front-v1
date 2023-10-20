@@ -22,7 +22,7 @@ export const getData = async <T>(
 ): Promise<AxiosResponse<T>> => {
   try {
     const response = await publicAxios.get(url, config);
-    return response.data;
+    return response;
   } catch (err) {
     if (isAxiosError<ResponseDataType>(err)) {
       throw new Error(err.response?.data.message);
@@ -56,7 +56,7 @@ export const putData = async <T>(
 ): Promise<AxiosResponse<T>> => {
   try {
     const response = await publicAxios.put(url, data, config);
-    return response.data;
+    return response;
   } catch (err) {
     if (isAxiosError<ResponseDataType>(err)) {
       throw new Error(err.response?.data.message);
@@ -72,7 +72,7 @@ export const deleteData = async <T>(
 ): Promise<AxiosResponse<T>> => {
   try {
     const response = await publicAxios.delete(url, config);
-    return response.data;
+    return response;
   } catch (err) {
     if (isAxiosError<ResponseDataType>(err)) {
       throw new Error(err.response?.data.message);
@@ -89,7 +89,7 @@ export const patchData = async <T>(
 ): Promise<AxiosResponse<T>> => {
   try {
     const response = await publicAxios.patch(url, data, config);
-    return response.data;
+    return response;
   } catch (err) {
     if (isAxiosError<ResponseDataType>(err)) {
       throw new Error(err.response?.data.message);

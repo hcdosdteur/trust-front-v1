@@ -1,11 +1,25 @@
+import { useContext, useEffect } from 'react';
+
 import { styled } from '#/stitches.config';
 
 import hyeonseo from '@/assets/profile/baekhyeonseo.png';
 import dohyeon from '@/assets/profile/kimdohyeon.png';
 import { ReactComponent as gyeongmin } from '@/assets/profile/kimgyeongmin.svg';
 import { Card } from '@/component/profile';
+import { ApiContext } from '@/context/api';
 
 export const Member = () => {
+  const { member } = useContext(ApiContext);
+
+  const getMember = async () => {
+    const memberArr = await member.get();
+    console.log(memberArr);
+  };
+
+  useEffect(() => {
+    getMember();
+  }, []);
+
   return (
     <Wrapper>
       <Container>
