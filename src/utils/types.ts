@@ -4,6 +4,15 @@ export type Type = 'web' | 'pwn' | 'rev' | 'crypto';
 
 export type UserType = 'A' | 'U';
 
+export type Admin =
+  | 'Kim-Dohyeon'
+  | 'Baek-Hyeonseo'
+  | 'Kim-Gyeongmin'
+  | 'Cho-Hyeonjae'
+  | 'Jeon-Mingi'
+  | 'Kim-Jiho'
+  | 'Lee-Yeil';
+
 export interface elementType {
   [key: string]: RefObject<HTMLDivElement>;
 }

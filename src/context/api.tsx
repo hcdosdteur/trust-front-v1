@@ -2,8 +2,6 @@ import type { Type } from '@/utils/types';
 
 import { createContext } from 'react';
 
-import { AxiosResponse } from 'axios';
-
 import { getData } from '@/api';
 
 type ApiError = string | undefined;
