@@ -12,11 +12,13 @@ import dohyeon from '@/assets/profile/kimdohyeon.png';
 import { ReactComponent as gyeongmin } from '@/assets/profile/kimgyeongmin.svg';
 import { ReactComponent as kimjiho } from '@/assets/profile/kimjiho.svg';
 import { ReactComponent as leeyeil } from '@/assets/profile/leeyeil.svg';
+import { Loading } from '@/component/loading/Loading';
 import { Card } from '@/component/profile';
 import { ApiContext } from '@/context/api';
 
 export const Member = () => {
   const [memberArr, setMemberArr] = useState<MemberType[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const { member } = useContext(ApiContext);
 
   const img = {
@@ -30,8 +32,14 @@ export const Member = () => {
   };
 
   const getMember = async () => {
+    setLoading(true);
     const res = await member.get();
+    if (!res) {
+      alert('서버와의 연결이 원활하지 않습니다 T.T');
+      return;
+    }
     console.log(res);
+    setLoading(false);
     setMemberArr(res as MemberType[]);
   };
 
@@ -41,6 +49,7 @@ export const Member = () => {
 
   return (
     <Wrapper>
+      {loading && <Loading />}
       <Container>
         {memberArr.map((props, idx) => (
           <Card
@@ -66,7 +75,7 @@ const Wrapper = styled('div', {
 const Container = styled('div', {
   display: 'grid',
   paddingTop: '18rem',
-  paddingBottom: '18rem',
+  paddingBottom: '15rem',
   gridTemplateColumns: 'repeat(auto-fill, minmax(53rem, 1fr))',
   // display: 'flex',
   // alignItems: 'center',

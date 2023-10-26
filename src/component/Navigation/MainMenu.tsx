@@ -2,10 +2,17 @@ import { Link } from 'react-router-dom';
 
 import { styled, keyframes } from '#/stitches.config';
 
+import { navigation } from '.';
+
 export const MainMenu: React.FC<{ top: boolean }> = ({ top }) => {
   return (
     <Menu display={top}>
-      <Text>
+      {navigation.map((item, idx) => (
+        <Text key={idx}>
+          <Link to={item[0]}>{item[1].toUpperCase()}</Link>
+        </Text>
+      ))}
+      {/* <Text>
         <Link to="/login">LOGIN</Link>
       </Text>
       <Text>
@@ -16,7 +23,7 @@ export const MainMenu: React.FC<{ top: boolean }> = ({ top }) => {
       </Text>
       <Text>
         <Link to="/assignment">ASSIGNMENT</Link>
-      </Text>
+      </Text> */}
     </Menu>
   );
 };

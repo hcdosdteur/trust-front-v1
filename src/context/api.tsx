@@ -32,7 +32,11 @@ const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
       return data;
     } catch (err) {
       if (err instanceof Error) {
-        console.log(err.message);
+        if (err.message === '') {
+          console.log();
+        } else {
+          console.log(err.message);
+        }
         return err.message;
       }
     }

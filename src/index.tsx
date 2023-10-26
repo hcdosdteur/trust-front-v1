@@ -61,6 +61,7 @@ const Router = () => {
       <Route path="/loading" element={<Main />} />
       <Route path="/member" element={<Main />} />
       <Route path="/assignment" element={<NeedAuth element={Assignment} />} />
+      <Route path="/post" element={<NeedAuth element={Assignment} />} />
       <Route path="/" element={<Main />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

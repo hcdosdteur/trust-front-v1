@@ -35,7 +35,7 @@ const Waviy = styled('div', {
 const Span = styled('span', {
   position: 'relative',
   display: 'inline-block',
-  color: '#fff',
+  color: '$main',
   fontSize: '4rem',
   textTransform: 'uppercase',
   animation: `${filp} 2s infinite`,

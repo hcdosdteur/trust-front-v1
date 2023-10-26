@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 
-// import { styled } from '#/stitches.config';
+import { styled } from '#/stitches.config';
 
 import { Loading } from '@/component/loading/Loading';
+
+import { Wrapper, Container, Post } from './index';
 
 const Admin = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -12,10 +14,28 @@ const Admin = () => {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       {loading && <Loading />}
-      <h1>ADMIN 게시판 페이지 입니다.</h1>
-    </>
+      <Container>
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+      </Container>
+    </Wrapper>
   );
 };
 

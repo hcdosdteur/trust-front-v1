@@ -2,10 +2,19 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 
 import { keyframes, styled } from '#/stitches.config';
 
+import { navigation } from '.';
+
 export const SubMenu = () => {
   return (
     <Wrapper>
-      <div>
+      {navigation.map((item, idx) => (
+        <div key={idx}>
+          <NavLink to={item[0]}>
+            {item[1].charAt(0).toUpperCase() + item[1].slice(1)}
+          </NavLink>
+        </div>
+      ))}
+      {/* <div>
         <NavLink to="/">Home</NavLink>
       </div>
       <div>
@@ -16,7 +25,7 @@ export const SubMenu = () => {
       </div>
       <div>
         <NavLink to="/assignment">Assignment</NavLink>
-      </div>
+      </div> */}
     </Wrapper>
   );
 };
