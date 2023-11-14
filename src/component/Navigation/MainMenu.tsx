@@ -7,23 +7,14 @@ import { navigation } from '.';
 export const MainMenu: React.FC<{ top: boolean }> = ({ top }) => {
   return (
     <Menu display={top}>
-      {navigation.map((item, idx) => (
-        <Text key={idx}>
-          <Link to={item[0]}>{item[1].toUpperCase()}</Link>
-        </Text>
-      ))}
-      {/* <Text>
-        <Link to="/login">LOGIN</Link>
-      </Text>
-      <Text>
-        <Link to="/member">MEMBER</Link>
-      </Text>
-      <Text>
-        <Link to="/awards">AWARD</Link>
-      </Text>
-      <Text>
-        <Link to="/assignment">ASSIGNMENT</Link>
-      </Text> */}
+      {navigation.map((item, idx) => {
+        if (item[1] !== 'home')
+          return (
+            <Text key={idx}>
+              <Link to={item[0]}>{item[1].toUpperCase()}</Link>
+            </Text>
+          );
+      })}
     </Menu>
   );
 };

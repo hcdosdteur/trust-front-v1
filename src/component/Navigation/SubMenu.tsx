@@ -7,25 +7,16 @@ import { navigation } from '.';
 export const SubMenu = () => {
   return (
     <Wrapper>
-      {navigation.map((item, idx) => (
-        <div key={idx}>
-          <NavLink to={item[0]}>
-            {item[1].charAt(0).toUpperCase() + item[1].slice(1)}
-          </NavLink>
-        </div>
-      ))}
-      {/* <div>
-        <NavLink to="/">Home</NavLink>
-      </div>
-      <div>
-        <NavLink to="/member">Member</NavLink>
-      </div>
-      <div>
-        <NavLink to="/awards">Awards</NavLink>
-      </div>
-      <div>
-        <NavLink to="/assignment">Assignment</NavLink>
-      </div> */}
+      {navigation.map((item, idx) => {
+        if (item[1] !== 'login')
+          return (
+            <div key={idx}>
+              <NavLink to={item[0]}>
+                {item[1].charAt(0).toUpperCase() + item[1].slice(1)}
+              </NavLink>
+            </div>
+          );
+      })}
     </Wrapper>
   );
 };
@@ -65,4 +56,5 @@ const NavLink = styled(RRNavLink, {
   '&.active': {
     opacity: 1,
   },
+  userSelect: 'none',
 });

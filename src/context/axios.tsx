@@ -51,10 +51,6 @@ const useAxiosAuth = () => {
     }
   };
 
-  // headers: {
-  //   Authorization: `Bearer ${}`,
-  // }
-
   const logout = () => {
     useResetRecoilState(atoms.userAtom);
   };

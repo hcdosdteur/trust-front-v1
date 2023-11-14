@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import { Loading } from '@/component/loading/Loading';
 
-const User = () => {
+export const Post = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -14,12 +14,10 @@ const User = () => {
   return (
     <>
       {loading && <Loading />}
-      <h1>과제 게시판 페이지 입니다.</h1>
+      <h1>게시판 페이지 입니다.</h1>
     </>
   );
 };
-
-export default User;
 
 // const Wrapper = styled('div', {
 //   width: '100%',

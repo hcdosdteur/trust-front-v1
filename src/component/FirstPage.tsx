@@ -63,7 +63,7 @@ const MainContainer = styled('div', {
 const MainMenuContainer = styled('div', {
   position: 'absolute',
   bottom: '1rem',
-  minWidth: '40rem',
+  minWidth: '45rem',
   height: '5.5rem',
 });
 
