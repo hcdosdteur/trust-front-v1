@@ -30,10 +30,18 @@ export interface Assignment {
   week: number;
   category: Type;
 }
+export interface Post {
+  _id: string;
+  user: string;
+  category: Type;
+  title: string;
+  content: string;
+}
 
 type GetUser = () => Promise<User | ApiError>;
 type GetMember = () => Promise<Member[] | ApiError>;
 type GetAssignment = () => Promise<Assignment[] | ApiError>;
+type GetPost = () => Promise<Post[] | ApiError>;
 interface ContextType {
   user: {
     get: GetUser;
@@ -44,6 +52,9 @@ interface ContextType {
   assignment: {
     get: GetAssignment;
     post: () => void;
+  };
+  post: {
+    get: GetPost;
   };
 }
 const ApiContext = createContext<ContextType>({} as ContextType);
@@ -93,6 +104,21 @@ const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
     }
   };
 
+  const getPost = async () => {
+    try {
+      const { data } = await getData<Post[]>('/post', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (err) {
+      if (err instanceof Error) {
+        return err.message;
+      }
+    }
+  };
+
   return (
     <Provider
       value={{
@@ -105,6 +131,9 @@ const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
         assignment: {
           get: getAssignment,
           post: () => {},
+        },
+        post: {
+          get: getPost,
         },
       }}
     >

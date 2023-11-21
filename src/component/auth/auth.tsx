@@ -53,21 +53,3 @@ export const NeedAuth = ({
     </>
   );
 };
-
-// export const BranchRouting = ({
-//   screens: { Admin, User },
-// }: {
-//   screens: {
-//     Admin: LoadableComponent<unknown>;
-//     User: LoadableComponent<unknown>;
-//   };
-// }): JSX.Element => {
-//   const [myData, setMyData] = useState<User | null>();
-//   // need User Type
-//   useEffect(() => {}, []);
-
-//   if (myData === null) return <Navigate to="/" />;
-//   if (myData?.userType === UserType.A) return <Box Children={Admin} />;
-//   if (myData?.userType === UserType.U) return <Box Children={User} />;
-//   return <></>;
-// };

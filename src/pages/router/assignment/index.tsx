@@ -35,7 +35,7 @@ export const PostContainer = styled('div', {
 interface PostProps {
   title: string;
   content: string;
-  completed: boolean;
+  completed?: boolean | string;
   category: Type;
 }
 export const Post: React.FC<PostProps> = ({
@@ -58,7 +58,11 @@ export const Post: React.FC<PostProps> = ({
         <pre dangerouslySetInnerHTML={{ __html: content }} />
       </Contents>
       <Interaction>
-        <Button completed={completed ? true : undefined}>
+        <Button
+          completed={
+            completed === 'post' ? false : completed === true ? true : undefined
+          }
+        >
           <Check fill={completed ? '#748189' : '#C2D7E4'} />
         </Button>
         <Button>
@@ -122,6 +126,9 @@ const Button = styled('div', {
     completed: {
       true: {
         backgroundColor: '$main',
+      },
+      false: {
+        display: 'none',
       },
     },
   },
