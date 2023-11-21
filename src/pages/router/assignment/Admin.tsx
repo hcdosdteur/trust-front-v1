@@ -1,27 +1,38 @@
 import type { Assignment as AssignmentType } from '@/context/api';
 
 import { useState, useEffect, useContext } from 'react';
-
-import { styled } from '#/stitches.config';
+import { useNavigate } from 'react-router-dom';
 
 import { Loading } from '@/component/loading/Loading';
 import { ApiContext } from '@/context/api';
+import { useAxiosAuth } from '@/context/axios';
 
 import { Wrapper, Container, Post } from './index';
 
 const Admin = () => {
   const [assignArr, setAssignArr] = useState<AssignmentType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
   const { assignment } = useContext(ApiContext);
+  const { logout } = useAxiosAuth();
 
   const getAssignment = async () => {
     setLoading(true);
-    const res = await assignment.get();
-    if (!res) {
-      alert('서버와의 연결이 원활하지 않습니다 T.T');
-      return;
+    try {
+      const res = await assignment.get();
+      if (!res) {
+        alert('서버와의 연결이 원활하지 않습니다 T.T');
+        return;
+      } else if (res === 'JWT 토큰이 올바르지 않거나 만료되었습니다.') {
+        alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
+        logout();
+        navigate('/login');
+      }
+      console.log(res);
+      setAssignArr(res as AssignmentType[]);
+    } catch (err) {
+      console.log(err);
     }
-    console.log(res);
     setLoading(false);
   };
 
@@ -33,23 +44,15 @@ const Admin = () => {
     <Wrapper>
       {loading && <Loading />}
       <Container>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {assignArr.map(({ title, content, category, completed }, idx) => (
+          <Post
+            title={title}
+            content={content}
+            category={category}
+            completed={completed}
+            key={idx}
+          ></Post>
+        ))}
       </Container>
     </Wrapper>
   );

@@ -8,6 +8,10 @@ import Insta from '@/assets/icon/instagram.svg';
 import { ReactComponent as Loading } from '@/assets/icon/loading.svg';
 import { useAxiosAuth } from '@/context/axios';
 
+interface loginProp {
+  preventDefault: () => void;
+}
+
 const Login = () => {
   const Axios = useAxiosAuth();
 
@@ -15,8 +19,12 @@ const Login = () => {
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
 
-  const login = async () => {
-    if (id === '' || pw === '') return alert('입력하지 않은 값이 존재합니다.');
+  const login = async (e: loginProp) => {
+    e.preventDefault();
+    console.clear();
+
+    if (id === '' || pw === '')
+      return alert('UserID 또는 Password를 입력하지 않았습니다.');
     setLoading(true);
 
     const userInfo = {
@@ -31,7 +39,7 @@ const Login = () => {
     <Wrapper>
       <LoginContainer>
         <Title>USER LOGIN</Title>
-        <UserData>
+        <UserData onSubmit={login}>
           <UserDataSub>
             <Data>
               <Input
@@ -65,7 +73,7 @@ const Login = () => {
               </ForgetPw>
             </Data>
           </UserDataSub>
-          <LoginBtn onClick={login}>
+          <LoginBtn onClick={login} type="submit">
             {loading ? <Loading width="30px" /> : <span>Login</span>}
           </LoginBtn>
         </UserData>
@@ -134,7 +142,7 @@ const Title = styled('div', {
   userSelect: 'none',
 });
 
-const UserData = styled('div', {
+const UserData = styled('form', {
   position: 'relative',
   width: '100%',
   display: 'flex',
@@ -182,7 +190,7 @@ const Data = styled('div', {
   },
 });
 
-const LoginBtn = styled('div', {
+const LoginBtn = styled('button', {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',

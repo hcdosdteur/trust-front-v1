@@ -1,4 +1,4 @@
-import type { Type } from '@/utils/types';
+import type { Type, UserType } from '@/utils/types';
 
 import { createContext } from 'react';
 
@@ -7,13 +7,20 @@ import { getAccessToken } from '@/api/auth';
 
 type ApiError = string | undefined;
 
+export interface User {
+  _id: string;
+  username: string;
+  name: string;
+  hashtag: string[];
+  type: Type;
+  role: UserType;
+}
 export interface Member {
   _id: string;
   name: string;
   hashtag: string[];
   type: Type;
 }
-
 export interface Assignment {
   _id: string;
   title: string;
@@ -24,9 +31,13 @@ export interface Assignment {
   category: Type;
 }
 
+type GetUser = () => Promise<User | ApiError>;
 type GetMember = () => Promise<Member[] | ApiError>;
 type GetAssignment = () => Promise<Assignment[] | ApiError>;
 interface ContextType {
+  user: {
+    get: GetUser;
+  };
   member: {
     get: GetMember;
   };
@@ -45,17 +56,23 @@ interface ApiProviderProps {
 const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const token = getAccessToken();
 
+  const getUser: GetUser = async () => {
+    try {
+      const { data } = await getData<User>('/user');
+      return data;
+    } catch (err) {
+      if (err instanceof Error) {
+        return err.message;
+      }
+    }
+  };
+
   const getMember: GetMember = async () => {
     try {
       const { data } = await getData<Member[]>('/user/member');
       return data;
     } catch (err) {
       if (err instanceof Error) {
-        if (err.message === '') {
-          console.log();
-        } else {
-          console.log(err.message);
-        }
         return err.message;
       }
     }
@@ -71,11 +88,6 @@ const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
       return data;
     } catch (err) {
       if (err instanceof Error) {
-        if (err.message === '') {
-          console.log();
-        } else {
-          console.log(err.message);
-        }
         return err.message;
       }
     }
@@ -84,6 +96,9 @@ const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
   return (
     <Provider
       value={{
+        user: {
+          get: getUser,
+        },
         member: {
           get: getMember,
         },

@@ -25,6 +25,7 @@ type Register = (newuser: {
 const useAxiosAuth = () => {
   const navigate = useNavigate();
   const setAuth = useSetRecoilState(userAtom);
+  const resetToken = useResetRecoilState(atoms.userAtom);
 
   const register: Register = async (newUser) => {
     try {
@@ -41,7 +42,7 @@ const useAxiosAuth = () => {
   const login: Login = async (userInfo) => {
     try {
       const res = await postData<User>('/auth/login', userInfo);
-      console.log(res.data.accessToken);
+      // console.log(res.data.accessToken);
       setAuth(res.data);
       navigate('/');
     } catch (err) {
@@ -52,7 +53,7 @@ const useAxiosAuth = () => {
   };
 
   const logout = () => {
-    useResetRecoilState(atoms.userAtom);
+    resetToken();
   };
 
   return {
